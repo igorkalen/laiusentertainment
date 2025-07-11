@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Laius Entertainment - Identity Platform</title>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+        <style>
+            :root {
+                --primary-color: #27742d;
+                --secondary-color: #ffffff;
+                --text-color: #3a3a3f;
+                --neutral-light: #f8f9fa;
+                --neutral-medium: #d1d5db;
+                --dark-bg: #1a1a1a;
+                --dark-text: #ffffff;
+                --dark-secondary: #2d2d2d;
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: "Poppins", sans-serif;
+                background-color: var(--secondary-color);
+                color: var(--text-color);
+                height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 20px;
+            }
+
+            .login-container {
+                background: var(--neutral-light);
+                border-radius: 15px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                max-width: 400px;
+                width: 100%;
+                padding: 40px 30px;
+                text-align: center;
+                animation: fadeInUp 0.8s ease forwards;
+                position: relative;
+            }
+
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            .login-container h1 {
+                font-family: "Montserrat", sans-serif;
+                font-weight: 700;
+                font-size: 32px;
+                color: var(--primary-color);
+                margin-bottom: 10px;
+            }
+
+            .login-container p {
+                font-family: "Montserrat", sans-serif;
+                font-weight: 600;
+                font-size: 16px;
+                color: var(--text-color);
+                margin-bottom: 30px;
+            }
+
+            form {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            input[type="email"],
+            input[type="password"] {
+                padding: 15px 20px;
+                font-size: 16px;
+                border: 1.5px solid var(--neutral-medium);
+                border-radius: 50px;
+                font-family: "Poppins", sans-serif;
+                transition: border-color 0.3s ease;
+            }
+
+            input[type="email"]:focus,
+            input[type="password"]:focus {
+                border-color: var(--primary-color);
+                outline: none;
+            }
+
+            .checkbox-wrapper {
+                display: flex;
+                align-items: center;
+                font-size: 14px;
+                color: var(--text-color);
+                gap: 8px;
+                user-select: none;
+            }
+
+            button {
+                background-color: var(--primary-color);
+                color: white;
+                border: none;
+                padding: 15px 0;
+                border-radius: 50px;
+                font-family: "Montserrat", sans-serif;
+                font-weight: 600;
+                font-size: 18px;
+                cursor: pointer;
+                transition: background-color 0.3s ease, transform 0.3s ease;
+            }
+
+            button:hover {
+                background-color: #1e5d22;
+                transform: translateY(-2px);
+                box-shadow: 0 8px 20px rgba(39, 116, 45, 0.3);
+            }
+
+            .forgot-password,
+            .need-help {
+                font-size: 14px;
+                color: var(--primary-color);
+                font-weight: 600;
+                margin-top: 15px;
+                text-decoration: none;
+                display: inline-block;
+                transition: color 0.3s ease;
+                cursor: pointer;
+            }
+
+            .forgot-password:hover,
+            .need-help:hover {
+                color: #1e5d22;
+            }
+
+            .legal-notice {
+                font-size: 12px;
+                color: var(--neutral-medium);
+                margin-top: 25px;
+                line-height: 1.3;
+                user-select: none;
+            }
+
+            .footer-text {
+                margin-top: 30px;
+                font-size: 13px;
+                color: var(--primary-color);
+                font-weight: 600;
+                cursor: pointer;
+                text-decoration: underline;
+                user-select: none;
+            }
+
+            .copyright {
+                margin-top: 15px;
+                font-size: 11px;
+                color: var(--neutral-medium);
+                user-select: none;
+            }
+            p.copyright {
+                font-family: "Poppins", sans-serif;
+                font-weight: 400;
+                font-size: 12px;
+                color: var(--text-color);
+            }
+            .error-message {
+                color: #d93025;
+                font-size: 12px;
+                margin-top: 5px;
+                text-align: left;
+                font-family: "Poppins", sans-serif;
+                font-weight: 700;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="login-container">
+            <h1>Welcome Back</h1>
+            <p>Laius Entertainment Identity Platform</p>
+            <form novalidate id="loginForm">
+                <input type="email" id="email" placeholder="Email address" required />
+                <small class="error-message" id="emailError"></small>
+
+                <input type="password" id="password" placeholder="Password" required />
+                <small class="error-message" id="passwordError"></small>
+
+                <button type="submit">Log In</button>
+            </form>
+            <a href="mailto:hello@laiusgames.com" class="need-help">Need help?</a>
+            <p class="copyright">&copy; 2025 Laius Entertainment. All rights reserved.</p>
+        </div>
+    </body>
+    <script>
+        const form = document.getElementById("loginForm");
+        const email = document.getElementById("email");
+        const password = document.getElementById("password");
+        const emailError = document.getElementById("emailError");
+        const passwordError = document.getElementById("passwordError");
+
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            emailError.textContent = "";
+            passwordError.textContent = "";
+
+            let valid = true;
+
+            if (!email.value) {
+                emailError.textContent = "Email is required!";
+                valid = false;
+            } else if (!email.value.includes("@")) {
+                emailError.textContent = 'Email must include an "@" symbol!';
+                valid = false;
+            }
+
+            if (!password.value) {
+                passwordError.textContent = "Password is required!";
+                valid = false;
+            }
+
+            if (valid) {
+                form.submit();
+            }
+        });
+    </script>
+</html>
