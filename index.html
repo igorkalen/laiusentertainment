@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <!--
+    Developed by: Igor Kalen
+    Contact: igor@igorkalen.dev
+    Date: July 11, 2025
+
+    ---
+    Copyright (c) 2025 Laius Group. All rights reserved.
+
+    This code and its contents are proprietary to Laius Group. Unauthorized use,
+    reproduction, distribution, or modification of any part of this code is strictly
+    prohibited without explicit written permission from Laius Group.
+
+    This code is intended solely for internal use by official Laius Group operations
+    and deployment on verified domains and subdomains controlled by Laius Group.
+    This restriction does not apply to domains or subdomains where customers have
+    access to user-generated content, which may utilize parts of this code under
+    specific agreements. 
+ -->
+  
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laius Entertainment</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #27742D;
+            --secondary-color: #FFFFFF;
+            --text-color: #3A3A3F;
+            --neutral-light: #F8F9FA;
+            --neutral-medium: #D1D5DB;
+            --dark-bg: #1a1a1a;
+            --dark-text: #ffffff;
+            --dark-secondary: #2d2d2d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--secondary-color);
+            transition: all 0.3s ease;
+        }
+
+        body.dark-mode {
+            background-color: var(--dark-bg);
+            color: var(--dark-text);
+        }
+
+        body.dark-mode .navbar {
+            background-color: var(--dark-secondary);
+            box-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
+        }
+
+        body.dark-mode .hero {
+            background: linear-gradient(135deg, var(--dark-bg) 0%, var(--dark-secondary) 100%);
+        }
+
+        body.dark-mode .feature-card,
+        body.dark-mode .info-card {
+            background-color: var(--dark-secondary);
+            border-color: #444;
+        }
+
+        body.dark-mode .section {
+            background-color: var(--dark-bg);
+        }
+
+        body.dark-mode .section:nth-child(even) {
+            background-color: var(--dark-secondary);
+        }
+
+        .navbar {
+            background-color: var(--secondary-color);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 24px;
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .nav-link {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 400;
+            font-size: 16px;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 8px 16px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .theme-toggle svg {
+  vertical-align: middle;
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  transition: fill 0.3s ease;
+  fill: white;
+}
+
+body:not(.dark-mode) .theme-toggle svg {
+  fill: green;
+}
+
+body:not(.dark-mode) .theme-toggle:hover svg {
+  fill: white;
+}
+
+        .theme-toggle:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--primary-color);
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--neutral-light) 0%, var(--secondary-color) 100%);
+            padding: 120px 20px 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="%2327742D" stroke-width="0.5" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)" /></svg>');
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 48px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero-subtitle {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 28px;
+            color: var(--text-color);
+            margin-bottom: 25px;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        .hero-description {
+            font-size: 16px;
+            color: var(--text-color);
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 0.8s ease 0.4s both;
+        }
+
+        .cta-container {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease 0.6s both;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #1e5d22;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(39, 116, 45, 0.3);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .section {
+            padding: 80px 20px;
+        }
+
+        .section:nth-child(even) {
+            background-color: var(--neutral-light);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 36px;
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .feature-card {
+            background-color: var(--secondary-color);
+            padding: 40px 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid var(--neutral-medium);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+     .feature-icon svg {
+  display: block;
+  margin: 0 auto;
+  padding: 0;
+}
+
+
+        .feature-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 24px;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .feature-description {
+            font-size: 16px;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .links-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .game-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 25px;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .game-link:hover {
+            background-color: #1e5d22;
+            transform: translateY(-2px);
+        }
+
+        .info-section {
+            background-color: var(--secondary-color);
+            padding: 60px 20px;
+            border-radius: 20px;
+            margin: 40px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .info-card {
+            background-color: var(--neutral-light);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border-left: 5px solid var(--primary-color);
+        }
+
+        .info-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 24px;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .contact-section {
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary-color) 0%, #1e5d22 100%);
+            color: white;
+            padding: 80px 20px;
+        }
+
+        .contact-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .contact-description {
+            font-size: 16px;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-email {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border: 2px solid white;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-link:hover {
+            background-color: white;
+            color: var(--primary-color);
+        }
+
+        .footer {
+            background-color: var(--text-color);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-link {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: var(--primary-color);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background-color: var(--secondary-color);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+                padding: 20px 0;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .hero-title {
+                font-size: 36px;
+            }
+
+            .hero-subtitle {
+                font-size: 24px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .links-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .contact-links {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+  <a href="/" class="logo" style="display: flex; align-items: center;">
+    <img src="entertainment.png" alt="Laius Entertainment" style="height: 50px;">
+  </a>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#game" class="nav-link">The Game</a></li>
+                <li><a href="#parents" class="nav-link">For Parents</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+                <li><a href="#careers" class="nav-link">Careers</a></li>
+            </ul>
+            
+  <!--   <button class="theme-toggle" onclick="toggleTheme()">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" width="16" height="16" style="vertical-align: middle; margin-right: 8px;">
+    <path d="M480-120q-150 0-255-105T120-480q0-150 105-255t255-105q8 0 17 .5t23 1.5q-36 32-56 79t-20 99q0 90 63 153t153 63q52 0 99-18.5t79-51.5q1 12 1.5 19.5t.5 14.5q0 150-105 255T480-120Z"/>
+  </svg>
+  Dark Mode -->
+</button>
+
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1 class="hero-title">Ronald's Restaurant</h1>
+            <h2 class="hero-subtitle">McDonald's Simulation on ROBLOX</h2>
+            <p class="hero-description">
+                Join the biggest burger chain simulation on ROBLOX! Learn real-world skills while having fun with friends from around the world. Play as a cook, cashier, janitor, or customer in our friendly, educational environment.
+            </p>
+            <div class="cta-container">
+                <a href="#game" class="btn btn-primary">Play Now - Let's Go!</a>
+                <a href="#parents" class="btn btn-secondary">Info for Parents</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="game">
+        <div class="container">
+            <h2 class="section-title">Why Ronald's Restaurant?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="64px" viewBox="0 -960 960 960" width="64px" fill="#27742D"><path d="M180-120q-24 0-42-18t-18-42v-600q0-24 18-42t42-18h207q-2-37 26-66.5t67-29.5q39 0 67 29.5t26 66.5h207q24 0 42 18t18 42v600q0 24-18 42t-42 18H180Zm300-702q13 0 21.5-8.5T510-852q0-13-8.5-21.5T480-882q-13 0-21.5 8.5T450-852q0 13 8.5 21.5T480-822ZM180-217q60-56 135.9-90.5 75.89-34.5 164-34.5 88.1 0 164.1 34.5T780-217v-563H180v563Zm302-204q58 0 98-40t40-98q0-58-40-98t-98-40q-58 0-98 40t-40 98q0 58 40 98t98 40ZM235-180h490v-9q-54-46-116-69.5T480-282q-67 0-129 23.5T235-189v9Zm247-301q-32.5 0-55.25-22.75T404-559q0-32.5 22.75-55.25T482-637q32.5 0 55.25 22.75T560-559q0 32.5-22.75 55.25T482-481Zm-2-18Z"/></svg>
+                    </div>
+                    <h3 class="feature-title">Multiple Roles</h3>
+                    <p class="feature-description">Play as a cook, cashier, janitor, or customer. Each role teaches different real-world skills that are perfect for all ages.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="64px" viewBox="0 -960 960 960" width="64px" fill="#27742D"><path d="M480-80q-84 0-157-31.5T196-197q-54-54-85-127.5T80-482q0-84 31-156.5T196-765q54-54 127-84.5T480-880q84 0 157 30.5T764-765q54 54 85 126.5T880-482q0 84-31 157.5T764-197q-54 54-127 85.5T480-80Zm0-58q35-36 58.5-82.5T577-331H384q14 60 37.5 108t58.5 85Zm-85-12q-25-38-43-82t-30-99H172q38 71 88 111.5T395-150Zm171-1q72-23 129.5-69T788-331H639q-13 54-30.5 98T566-151ZM152-391h159q-3-27-3.5-48.5T307-482q0-25 1-44.5t4-43.5H152q-7 24-9.5 43t-2.5 45q0 26 2.5 46.5T152-391Zm221 0h215q4-31 5-50.5t1-40.5q0-20-1-38.5t-5-49.5H373q-4 31-5 49.5t-1 38.5q0 21 1 40.5t5 50.5Zm275 0h160q7-24 9.5-44.5T820-482q0-26-2.5-45t-9.5-43H649q3 35 4 53.5t1 34.5q0 22-1.5 41.5T648-391Zm-10-239h150q-33-69-90.5-115T565-810q25 37 42.5 80T638-630Zm-254 0h194q-11-53-37-102.5T480-820q-32 27-54 71t-42 119Zm-212 0h151q11-54 28-96.5t43-82.5q-75 19-131 64t-91 115Z"/></svg>
+                    </div>
+                    <h3 class="feature-title">Global Community</h3>
+                    <p class="feature-description">Make friends from around the world! Our community is super nice and always ready to help newcomers learn the ropes.</p>
+                </div>
+                <div class="feature-card">
+                   <div class="feature-icon">
+<svg xmlns="http://www.w3.org/2000/svg" width="64px" height="64px" viewBox="0 -960 960 960" fill="#27742D">
+  <path d="M480-260q68 0 123.5-38.5T684-400H276q25 63 80.5 101.5T480-260ZM312-520l44-42 42 42 42-42-84-86-86 86 42 42Zm250 0 42-42 44 42 42-42-86-86-84 86 42 42ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-400Zm0 320q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Z"/>
+</svg>
+</div>
+                    <h3 class="feature-title">Educational & Fun</h3>
+                    <p class="feature-description">Learn customer service, teamwork, reading, and communication skills while having a blast. Education has never been this entertaining!</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" height="64px" viewBox="0 -960 960 960" width="64px" fill="#27742D"><path d="M140-140v-320 320Zm680 0v-320 320Zm-60-480q25.5 0 42.75-17.25T820-680q0-25.5-17.25-42.75T760-740q-25.5 0-42.75 17.25T700-680q0 25.5 17.25 42.75T760-620Zm0 60q-51 0-85.5-34.5T640-680q0-50 34.5-85t85.5-35q50 0 85 35t35 85q0 51-35 85.5T760-560ZM480.16-660q32.84 0 56.34-23t23.5-57.16q0-32.84-23.33-56.34Q513.33-820 480-820q-34 0-57 23.33-23 23.34-23 56.67 0 34 23 57t57.16 23Zm-.16 60q-59 0-99.5-40.5T340-740q0-58 40.5-99t99.5-41q58 0 99 41t41 99q0 59-41 99.5T480-600ZM300-425q0 34.64 36.5 80.82Q373-298 480-201q105.75-96.33 142.88-141.67Q660-388 660-425q0-32-20.77-53.5T588-500q-17.59 0-33.29 9Q539-482 525-470l-45 42-46-42q-14-12-29.5-21t-32.83-9q-30.67 0-51.17 21.82T300-425Zm-60 0q0-53 40-94t92-41q30 0 58.87 14 28.88 14 49.14 38 20.26-24 48.62-38Q557-560 588-560q51 0 91.5 41t40.5 94q0 53-38.5 104.5T524-160l-44 40-44-40Q315-270 277.5-321T240-425Zm-40-195q25.5 0 42.75-17.25T260-680q0-25.5-17.25-42.75T200-740q-25.5 0-42.75 17.25T140-680q0 25.5 17.25 42.75T200-620ZM483-80v-60h337v-320H678v-60h142q24.75 0 42.38 17.62Q880-484.75 880-460v380H483Zm-343-60h343v60H80v-380q0-24.75 17.25-42.38Q114.5-520 140-520h141v60H140v320Zm60-420q-51 0-85.5-34.5T80-680q0-50 34.5-85t85.5-35q50 0 85 35t35 85q0 51-35 85.5T200-560Zm280-180Zm-280 60Zm560 0Z"/></svg>
+                    </div>
+                    <h3 class="feature-title">All Ages Welcome</h3>
+                    <p class="feature-description">Our ROBLOX experience is rated for all ages. Safe, friendly, and inclusive environment for everyone to enjoy.</p>
+                </div>
+            </div>
+            
+            <div class="links-container">
+            <a href="#" class="game-link" style="display: inline-flex; align-items: center; gap: 6px;">
+ <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M189-160q-60 0-102.5-43T42-307q0-9 1-18t3-18l84-336q14-54 57-87.5t98-33.5h390q55 0 98 33.5t57 87.5l84 336q2 9 3.5 18.5T919-306q0 61-43.5 103.5T771-160q-42 0-78-22t-54-60l-28-58q-5-10-15-15t-21-5H385q-11 0-21 5t-15 15l-28 58q-18 38-54 60t-78 22Zm351.18-370q12.82 0 21.32-8.68 8.5-8.67 8.5-21.5 0-12.82-8.68-21.32-8.67-8.5-21.5-8.5-12.82 0-21.32 8.68-8.5 8.67-8.5 21.5 0 12.82 8.68 21.32 8.67 8.5 21.5 8.5Zm80-80q12.82 0 21.32-8.68 8.5-8.67 8.5-21.5 0-12.82-8.68-21.32-8.67-8.5-21.5-8.5-12.82 0-21.32 8.68-8.5 8.67-8.5 21.5 0 12.82 8.68 21.32 8.67 8.5 21.5 8.5Zm0 160q12.82 0 21.32-8.68 8.5-8.67 8.5-21.5 0-12.82-8.68-21.32-8.67-8.5-21.5-8.5-12.82 0-21.32 8.68-8.5 8.67-8.5 21.5 0 12.82 8.68 21.32 8.67 8.5 21.5 8.5Zm80-80q12.82 0 21.32-8.68 8.5-8.67 8.5-21.5 0-12.82-8.68-21.32-8.67-8.5-21.5-8.5-12.82 0-21.32 8.68-8.5 8.67-8.5 21.5 0 12.82 8.68 21.32 8.67 8.5 21.5 8.5Zm-360.06 65q10.88 0 17.88-7.08 7-7.09 7-17.92v-45h45q10.83 0 17.92-7.12 7.08-7.11 7.08-18 0-10.88-7.08-17.88-7.09-7-17.92-7h-45v-45q0-10.83-7.12-17.92-7.11-7.08-18-7.08-10.88 0-17.88 7.08-7 7.09-7 17.92v45h-45q-10.83 0-17.92 7.12-7.08 7.11-7.08 18 0 10.88 7.08 17.88 7.09 7 17.92 7h45v45q0 10.83 7.12 17.92 7.11 7.08 18 7.08Z"/></svg>
+                Play on ROBLOX
+</a>
+                <a href="#" class="game-link">
+                   <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" fill="#FFFFFF" viewBox="0,0,256,256">
+<g stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g transform="scale(5.33333,5.33333)"><path d="M39.248,10.177c-2.804,-1.287 -5.812,-2.235 -8.956,-2.778c-0.057,-0.01 -0.114,0.016 -0.144,0.068c-0.387,0.688 -0.815,1.585 -1.115,2.291c-3.382,-0.506 -6.747,-0.506 -10.059,0c-0.3,-0.721 -0.744,-1.603 -1.133,-2.291c-0.03,-0.051 -0.087,-0.077 -0.144,-0.068c-3.143,0.541 -6.15,1.489 -8.956,2.778c-0.024,0.01 -0.045,0.028 -0.059,0.051c-5.704,8.522 -7.267,16.835 -6.5,25.044c0.003,0.04 0.026,0.079 0.057,0.103c3.763,2.764 7.409,4.442 10.987,5.554c0.057,0.017 0.118,-0.003 0.154,-0.051c0.846,-1.156 1.601,-2.374 2.248,-3.656c0.038,-0.075 0.002,-0.164 -0.076,-0.194c-1.197,-0.454 -2.336,-1.007 -3.432,-1.636c-0.087,-0.051 -0.094,-0.175 -0.014,-0.234c0.231,-0.173 0.461,-0.353 0.682,-0.534c0.04,-0.033 0.095,-0.04 0.142,-0.019c7.201,3.288 14.997,3.288 22.113,0c0.047,-0.023 0.102,-0.016 0.144,0.017c0.22,0.182 0.451,0.363 0.683,0.536c0.08,0.059 0.075,0.183 -0.012,0.234c-1.096,0.641 -2.236,1.182 -3.434,1.634c-0.078,0.03 -0.113,0.12 -0.075,0.196c0.661,1.28 1.415,2.498 2.246,3.654c0.035,0.049 0.097,0.07 0.154,0.052c3.595,-1.112 7.241,-2.79 11.004,-5.554c0.033,-0.024 0.054,-0.061 0.057,-0.101c0.917,-9.491 -1.537,-17.735 -6.505,-25.044c-0.012,-0.024 -0.033,-0.042 -0.057,-0.052zM16.703,30.273c-2.168,0 -3.954,-1.99 -3.954,-4.435c0,-2.445 1.752,-4.435 3.954,-4.435c2.22,0 3.989,2.008 3.954,4.435c0.001,2.444 -1.751,4.435 -3.954,4.435zM31.324,30.273c-2.168,0 -3.954,-1.99 -3.954,-4.435c0,-2.445 1.752,-4.435 3.954,-4.435c2.22,0 3.989,2.008 3.954,4.435c0,2.444 -1.734,4.435 -3.954,4.435z"></path></g></g>
+</svg>
+                    Join Discord
+                </a>
+                <a href="#" class="game-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" fill="#FFFFFF" viewBox="0 0 48 48">
+<path d="M14.552,17.005c0,0-0.56,10.89,9.335,15.665c3.663-1.44,4.552-3.218,5.441-4.996h-6.001 c0,0-3.405-2.383-3.449-7.112h19.87c-1.742,7.228-5.894,16.109-15.753,19.558C11.547,34.786,7.667,26.331,7,10 c7,0,33.991,0,33.991,0s0.098,2.934-0.542,7.005H14.552z"></path>
+</svg>
+                    Join Guilded
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="parents">
+        <div class="container">
+            <h2 class="section-title">Information for Parents</h2>
+            <div class="info-section">
+                <div class="info-card">
+                    <h3 class="info-title">What is Ronald's Restaurant?</h3>
+                    <p>Ronald's Restaurant is an educational ROBLOX experience that simulates working at McDonald's. Your child can learn valuable life skills like customer service, teamwork, reading, and communication in a safe, supervised environment. Ronald's Group is designed to be both fun and educational, making learning feel like play.</p>
+                </div>
+                
+                <div class="info-card">
+                   <h3 class="info-title">Safety & Age Appropriateness</h3>
+<p>Our experience is rated for all ages by ROBLOX. We have a dedicated Trust & Safety team working around the clock to keep things secure. We maintain a family-friendly environment with active moderation. Ronald's Group teaches positive values like helping others, working together, and being responsible. No inappropriate content or unsafe interactions are allowed.</p>
+</div>
+
+                
+                <div class="info-card">
+                    <h3 class="info-title">Getting Started Without ROBLOX</h3>
+                    <p>If your child doesn't have a ROBLOX account yet, here's how to get started:</p>
+                    <ol style="margin-left: 20px; margin-top: 10px;">
+                        <li>Visit <a href="https://www.roblox.com" target="_blank" rel="noopener noreferrer" style="color: #27742D;"><strong>roblox.com</strong></a> and create a free account</li>
+                       <li>Set up parental controls and privacy settings <i>(optional but highly recommended for children & teens)</i></li>
+                        <li>Download the ROBLOX app on your device</li>
+                        <li>Search for <a href="https://www.roblox.com/games/17435742225/Ronalds-Restaurant" target="_blank" rel="noopener noreferrer" style="color: #27742D;"><strong>Ronald's Restaurant</strong></a> and click Play</li>
+                        <li>Your child can start learning and having fun immediately!</li>
+                    </ol>
+                </div>
+                
+                <div class="info-card">
+                    <h3 class="info-title">Educational Benefits</h3>
+                    <p>Playing Ronald's Restaurant helps children develop:</p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>Customer service and communication skills</li>
+                        <li>Reading and basic math through order taking</li>
+                        <li>Teamwork and collaboration</li>
+                        <li>Responsibility and work ethic</li>
+                        <li>Problem-solving abilities</li>
+                        <li>Social skills through positive interactions</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+  <section class="contact-section" id="contact">
+  <div class="container">
+    <h2 class="contact-title">Get in Touch</h2>
+    <p class="contact-description">
+      Have questions about Ronald's Restaurant or want to learn more about Laius Entertainment? We'd love to hear from you!
+    </p>
+
+  <div class="contact-email">
+  <strong>Ronald's Group Support:</strong> <a href="mailto:hello@ronaldsgroup.com" style="color: #FFFFFF; text-decoration: underline;">hello@ronaldsgroup.com</a>
+</div>
+<div class="contact-email">
+  <strong>General Inquiries:</strong> <a href="mailto:hello@laiusgames.com" style="color: #FFFFFF; text-decoration: underline;">hello@laiusgames.com</a>
+</div>
+<div class="contact-email">
+  <strong>Trust & Safety Team:</strong> <a href="mailto:trustandsafety@ronaldsgroup.com" style="color: #FFFFFF; text-decoration: underline;">trustandsafety@ronaldsgroup.com</a>
+</div>
+
+
+
+    <div class="contact-links">
+      <a href="mailto:hello@ronaldsgroup.com" class="contact-link">Contact Ronald's Group</a>
+      <a href="mailto:hello@laiusgames.com" class="contact-link">Contact Laius Entertainment</a>
+      <a href="mailto:trustandsafety@ronaldsgroup.com" class="contact-link">Contact Trust & Safety</a>
+    </div>
+  </div>
+</section>
+
+    <section class="section" id="careers">
+        <div class="container">
+            <h2 class="section-title">Join Our Team!</h2>
+            <div class="info-section">
+                <div style="text-align: center;">
+                    <h3 class="info-title">We're Hiring!</h3>
+                    <p style="font-size: 16px; margin-bottom: 20px;">
+                        Want to help create amazing gaming experiences that teach real-world skills?<br>
+                        Laius Entertainment is always looking for passionate people to join our crew!
+                    </p>
+                    <p style="font-size: 16px; margin-bottom: 30px;">
+                        Whether you're into game development, community management, or have other skills you think we'd love,<br>
+                        we want to hear from you. We're all about that chill, inclusive vibe and good energy.
+                    </p>
+                    <div class="cta-container">
+                        <a href="mailto:careers@laiusgames.com" class="btn btn-primary">Apply Now</a>
+                    </div>
+                    <p style="font-size: 14px; margin-top: 15px; color: #3A3A3F;">
+                       <b>careers@laiusgames.com</b>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#home" class="footer-link">Home</a>
+                <a href="#game" class="footer-link">The Game</a>
+                <a href="#parents" class="footer-link">For Parents</a>
+                <a href="#contact" class="footer-link">Contact</a>
+                <a href="#careers" class="footer-link">Careers</a>
+                <a href="/terms-of-service.pdf" class="footer-link">Terms of Service</a>
+                <a href="/privacy-policy.pdf" class="footer-link">Privacy Policy</a>
+                <a href="mailto:legal@laiusgames.com" class="footer-link">Legal Team</a>
+                <a href="https://id.laiusgames.com" class="footer-link">Identity Platform</a>
+            </div>
+            <p>&copy; 2025 Laius Entertainment. All rights reserved. | laiusgames.com</p>
+        </div>
+    </footer>
+
+    <script>
+/* function toggleTheme() {
+  const body = document.body;
+  const themeToggle = document.querySelector('.theme-toggle');
+
+  const lightModeIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M480-280q-83 0-141.5-58.5T280-480q0-83 58.5-141.5T480-680q83 0 141.5 58.5T680-480q0 83-58.5 141.5T480-280ZM200-450H40v-60h160v60Zm720 0H760v-60h160v60ZM450-760v-160h60v160h-60Zm0 720v-160h60v160h-60ZM262-658l-100-97 43-44 96 100-39 41Zm494 496-98-100 41-41 99 98-42 43Zm-99-537 98-99 44 42-99 98-43-41ZM162-205l99-98 42 42-98 99-43-43Z"/></svg>`;
+  const darkModeIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M480-120q-150 0-255-105T120-480q0-150 105-255t255-105q8 0 17 .5t23 1.5q-36 32-56 79t-20 99q0 90 63 153t153 63q52 0 99-18.5t79-51.5q1 12 1.5 19.5t.5 14.5q0 150-105 255T480-120Z"/></svg>`;
+
+  body.classList.toggle('dark-mode');
+
+  if (body.classList.contains('dark-mode')) {
+    themeToggle.innerHTML = `<b>${lightModeIcon} Light Mode</b>`;
+    localStorage.setItem('theme', 'dark');
+  } else {
+    themeToggle.innerHTML = `<b>${darkModeIcon} Dark Mode</b>`;
+    localStorage.setItem('theme', 'light');
+  }
+} */
+
+        function toggleMenu() {
+            const navMenu = document.querySelector('.nav-menu');
+            const hamburger = document.querySelector('.hamburger');
+            
+            navMenu.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        }
+
+        const lightModeIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M480-280q-83 0-141.5-58.5T280-480q0-83 58.5-141.5T480-680q83 0 141.5 58.5T680-480q0 83-58.5 141.5T480-280ZM200-450H40v-60h160v60Zm720 0H760v-60h160v60ZM450-760v-160h60v160h-60Zm0 720v-160h60v160h-60ZM262-658l-100-97 43-44 96 100-39 41Zm494 496-98-100 41-41 99 98-42 43Zm-99-537 98-99 44 42-99 98-43-41ZM162-205l99-98 42 42-98 99-43-43Z"/></svg>`;
+       
+        window.addEventListener('load', () => {
+            const savedTheme = localStorage.getItem('theme');
+            const themeToggle = document.querySelector('.theme-toggle');
+            
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+                themeToggle.innerHTML = `<b>${lightModeIcon} Light Mode</b>`;
+            }
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    
+                    const navMenu = document.querySelector('.nav-menu');
+                    const hamburger = document.querySelector('.hamburger');
+                    if (navMenu.classList.contains('active')) {
+                        navMenu.classList.remove('active');
+                        hamburger.classList.remove('active');
+                    }
+                }
+            });
+        });
+
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.backdropFilter = 'blur(10px)';
+            } else {
+                navbar.style.background = 'var(--secondary-color)';
+                navbar.style.backdropFilter = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
