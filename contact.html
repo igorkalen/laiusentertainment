@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Laius Entertainment - Contact Form</title>
-  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="icon" type="image/png" href="favicon.png" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
@@ -38,12 +38,51 @@
       max-width: 600px;
     }
 
+    .header-wrapper {
+      display: flex;
+      align-items: center;
+      margin-bottom: 40px;
+      position: relative;
+    }
+
     .section-title {
       font-family: "Montserrat", sans-serif;
       font-size: 36px;
       color: var(--primary-color);
       text-align: center;
-      margin-bottom: 40px;
+      flex-grow: 1;
+    }
+
+    .back-link {
+      color: var(--primary-color);
+      text-decoration: none;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border: 2px solid var(--primary-color);
+      border-radius: 25px;
+      transition: all 0.3s ease;
+      max-width: max-content;
+      margin-right: auto;
+      margin-left: -100px;
+      user-select: none;
+    }
+
+    .back-link:hover {
+      background-color: var(--primary-color);
+      color: white;
+    }
+
+    .back-link svg {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
     }
 
     form.contact-form {
@@ -82,7 +121,7 @@
       transition: all 0.2s ease;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
       appearance: none;
-      background-image: none; /* no arrow on inputs */
+      background-image: none;
       cursor: text;
     }
 
@@ -150,9 +189,17 @@
   </style>
 </head>
 <body>
-
   <div class="container">
-    <h2 class="section-title">Contact Us</h2>
+    <div class="header-wrapper">
+      <a href="/news" class="back-link" aria-label="Back">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Back
+      </a>
+      <h2 class="section-title">Contact Us</h2>
+    </div>
+
     <form id="contactForm" action="https://formspree.io/f/xvgqoyao" method="POST" class="contact-form" novalidate>
       <div class="form-group">
         <label for="email">Your Email</label>
@@ -182,74 +229,61 @@
           <option value="RTBF">Right to Be Forgotten (RTBF) Request</option>
           <option value="Other">Other</option>
         </select>
-        <div class="error-msg" id="deptError">Please select a category.</div>
+        <div class="error-msg" id="categoryError">Please select a category.</div>
       </div>
 
       <div class="form-group">
         <label for="message">Your Message</label>
-        <textarea name="message" id="message" rows="5" placeholder="Write something cool..."></textarea>
+        <textarea name="message" id="message" rows="6" placeholder="Write your message here..."></textarea>
         <div class="error-msg" id="messageError">Please enter a message.</div>
       </div>
 
-      <input type="text" name="_gotcha" style="display:none;" />
-      <button type="submit" id="submitBtn" class="btn">Send Message</button>
+      <button type="submit" class="btn">Send</button>
     </form>
   </div>
 
   <script>
     const form = document.getElementById('contactForm');
-    const email = document.getElementById('email');
-    const nameInput = document.getElementById('name');
-    const category = document.getElementById('category');
-    const message = document.getElementById('message');
 
-    const emailError = document.getElementById('emailError');
-    const nameError = document.getElementById('nameError');
-    const deptError = document.getElementById('deptError');
-    const messageError = document.getElementById('messageError');
-
-    function validateEmail(email) {
-      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-    }
-
-    form.addEventListener('submit', e => {
+    form.addEventListener('submit', (e) => {
       e.preventDefault();
+
+      ['email', 'name', 'category', 'message'].forEach(field => {
+        document.getElementById(field + 'Error').classList.remove('active');
+      });
 
       let valid = true;
 
-      if(!validateEmail(email.value.trim())) {
-        emailError.classList.add('active');
+      const emailInput = form.email;
+      const emailVal = emailInput.value.trim();
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(emailVal)) {
+        document.getElementById('emailError').classList.add('active');
         valid = false;
-      } else {
-        emailError.classList.remove('active');
       }
 
-      if(nameInput.value.trim() === '') {
-        nameError.classList.add('active');
+      const nameVal = form.name.value.trim();
+      if (nameVal.length < 2) {
+        document.getElementById('nameError').classList.add('active');
         valid = false;
-      } else {
-        nameError.classList.remove('active');
       }
 
-      if(category.value === '') {
-        deptError.classList.add('active');
+      const categoryVal = form.category.value;
+      if (!categoryVal) {
+        document.getElementById('categoryError').classList.add('active');
         valid = false;
-      } else {
-        deptError.classList.remove('active');
       }
 
-      if(message.value.trim() === '') {
-        messageError.classList.add('active');
+      const messageVal = form.message.value.trim();
+      if (messageVal.length < 5) {
+        document.getElementById('messageError').classList.add('active');
         valid = false;
-      } else {
-        messageError.classList.remove('active');
       }
 
-      if(valid) {
-        form.submit();
-      }
+      if (!valid) return;
+
+      form.submit();
     });
   </script>
-
 </body>
 </html>
