@@ -1,5 +1,23 @@
-/* 
-toggleTheme is commented out here, so just keep it if you want to activate it later
+/*
+    Developed by: Igor Kalen
+    Contact: igor@igorkalen.dev
+    Date: July 11, 2025
+
+    ---
+    Copyright (c) 2025 Laius Group. All rights reserved.
+
+    This code and its contents are proprietary to Laius Group. Unauthorized use,
+    reproduction, distribution, or modification of any part of this code is strictly
+    prohibited without explicit written permission from Laius Group.
+
+    This code is intended solely for internal use by official Laius Group operations
+    and deployment on verified domains and subdomains controlled by Laius Group.
+    This restriction does not apply to domains or subdomains where customers have
+    access to user-generated content, which may utilize parts of this code under
+    specific agreements. 
+ */
+
+/* do later
 function toggleTheme() {
   const body = document.body;
   const themeToggle = document.querySelector('.theme-toggle');
