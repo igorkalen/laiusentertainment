@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 	<!--
     Developed by: Igor Kalen
     Contact: igor@igorkalen.dev
     Date: July 11, 2025
+	Last Updated: July 23, 2025
 
     ---
     Copyright (c) 2025 Laius Group. All rights reserved.
@@ -18,15 +20,34 @@
     access to user-generated content, which may utilize parts of this code under
     specific agreements. 
  -->
+	
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Laius Entertainment</title>
 		<link rel="icon" type="image/png" href="favicon.png">
 		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&amp;family=Poppins:wght@300;400;600&amp;display=swap" rel="stylesheet">
-		<link rel="stylesheet" href="/css/styles.css" />
+		<link rel="stylesheet" href="/css/styles.css">
 	</head>
 	<body>
+		<div class="announcement-banner" id="announcementBanner">
+			<div class="announcement-content">
+				<div class="announcement-icon">
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="currentColor">
+						<path d="M480-280q17 0 28.5-11.5T520-320q0-17-11.5-28.5T480-360q-17 0-28.5 11.5T440-320q0 17 11.5 28.5T480-280Zm-40-160h80v-240h-80v240Zm40 360q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Z"></path>
+					</svg>
+				</div>
+				<div class="announcement-text">
+					<strong>Introducing Wayfresh!</strong>
+					Work in a store as a cashier, security, manager, and more in this<b>all-ages</b>shopping simulation. Releasing next month! <a href="#newsletter">Get notified</a>
+				</div>
+				<button class="close-button" onclick="closeBanner()" aria-label="Close announcement">
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="currentColor">
+						<path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"></path>
+					</svg>
+				</button>
+			</div>
+		</div>
 		<nav class="navbar">
 			<div class="nav-container">
 				<a href="/" class="logo" style="display: flex; align-items: center;">
@@ -38,11 +59,12 @@
 					</li>
 					<li>
 						<a href="#game" class="nav-link">The Game</a>
-</li>
+					</li>
 					<li>
 						<a href="#parents" class="nav-link">For Parents</a>
 					</li>
-                   <!-- <li>
+					
+					<!-- <li>
 						<a href="#news" class="nav-link">News</a>
 					</li>-->
 					<li>
@@ -70,7 +92,8 @@
 				<h1 class="hero-title">Ronald's Restaurant</h1>
 				<h2 class="hero-subtitle">Fast-Food Simulation on ROBLOX</h2>
 				<p class="hero-description">
-					Join a fast-food simulation on ROBLOX inspired by the world’s biggest fast food chain!<sup>1</sup> Learn real-world skills while having fun with friends from around the world. Play as a cook, cashier, janitor, or customer in our friendly, educational environment.
+					Join a fast-food simulation on ROBLOX inspired by the world’s biggest fast food chain!<sup>1</sup>
+					Learn real-world skills while having fun with friends from around the world. Play as a cook, cashier, janitor, or customer in our friendly, educational environment.
 				</p>
 				<div class="cta-container">
 					<a href="#game" class="btn btn-primary">Play Now - Let's Go!</a>
@@ -152,13 +175,15 @@
 					<div class="info-card">
 						<h3 class="info-title">What is Ronald's Restaurant?</h3>
 						<p>
-							Ronald's Restaurant is an educational ROBLOX experience that simulates working at a fast-paced restaurant inspired by the world’s most iconic fast-food chain.<sup>1</sup> Your child can learn valuable life skills like customer service, teamwork, reading, and communication in a safe, supervised environment<sup>2</sup>. Ronald's Group is designed to be both fun and educational, making learning feel like play.
+							Ronald's Restaurant is an educational ROBLOX experience that simulates working at a fast-paced restaurant inspired by the world’s most iconic fast-food chain.<sup>1</sup>
+							Your child can learn valuable life skills like customer service, teamwork, reading, and communication in a safe, supervised environment<sup>2</sup>. Ronald's Group is designed to be both fun and educational, making learning feel like play.
 						</p>
 					</div>
 					<div class="info-card">
 						<h3 class="info-title">Safety &amp; Age Appropriateness</h3>
 						<p>
-							Our experience is rated for all ages by ROBLOX.<sup>3</sup> We have a dedicated Trust &amp; Safety team working around the clock to keep things secure. We maintain a family-friendly environment with active moderation. Ronald's Group teaches positive values like helping others, working together, and being responsible. No inappropriate content or unsafe interactions are allowed.
+							Our experience is rated for all ages by ROBLOX.<sup>3</sup>
+							We have a dedicated Trust &amp; Safety team working around the clock to keep things secure. We maintain a family-friendly environment with active moderation. Ronald's Group teaches positive values like helping others, working together, and being responsible. No inappropriate content or unsafe interactions are allowed.
 						</p>
 					</div>
 					<div class="info-card">
@@ -201,8 +226,8 @@
 				</div>
 			</div>
 		</section>
-      
-      <!-- FINISH SOON  <section class="news-section" id="news">
+		
+		<!-- FINISH SOON  <section class="news-section" id="news">
     <h2 class="section-title">Latest News & Updates</h2>
     <div class="news-container">
         <div class="news-slider" id="newsSlider" tabindex="0">
@@ -236,14 +261,13 @@
     </div>
     <div class="news-indicators" id="newsIndicators"></div>
 </section> -->
-
-
 		<section class="contact-section" id="contact">
 			<div class="container">
 				<h2 class="contact-title">Get in Touch</h2>
 				<p class="contact-description">
 					Have questions about Ronald's Restaurant or want to learn more about Laius Entertainment? We'd love to hear from you!
 				</p>
+				
 				<!--<div class="contact-email">
 					<strong>Ronald's Group Support:</strong>
 					<a href="mailto:hello@ronaldsgroup.com" style="color: #ffffff; text-decoration: underline;">hello@ronaldsgroup.com</a>
@@ -294,19 +318,30 @@
 					<a href="#parents" class="footer-link">For Parents</a>
 					<a href="#contact" class="footer-link">Contact</a>
 					<a href="#careers" class="footer-link">Careers</a>
-                   <!--<a href="#news" class="footer-link">News</a> -->
-                    <a href="https://echo.laiusgames.com" class="footer-link">Webmail</a>
-                    <a href="https://status.ronaldsgroup.com/" class="footer-link">Service Status</a>
-    <a href="/files/documents/terms-of-service.pdf" class="footer-link">Terms of Service</a>
-    <a href="/files/documents/privacy-policy.pdf" class="footer-link">Privacy Policy</a>
+					
+					<!--<a href="#news" class="footer-link">News</a> -->
+					<a href="https://echo.laiusgames.com" class="footer-link">Webmail</a>
+					<a href="https://status.ronaldsgroup.com/" class="footer-link">Service Status</a>
+					<a href="/files/documents/terms-of-service.pdf" class="footer-link">Terms of Service</a>
+					<a href="/files/documents/privacy-policy.pdf" class="footer-link">Privacy Policy</a>
 				</div>
 				<p>© 2025 Laius Entertainment. All rights reserved. | laiusgames.com</p>
 				<small style="font-size:12px; margin:0.5em auto 0; color:#ffffff; text-align:left; display:block; line-height:1.4;">
-					<p><sup>1</sup> Ronald’s Group &amp; Ronald’s Restaurant are <b>not</b> affiliated, sponsored, endorsed, or connected in any way with McDonald’s Corporation or its affiliates.</p>
-                    <p><sup>2</sup> While we maintain a dedicated moderation team, full supervision depends on both in-game staff and ROBLOX's moderation tools. Parents should monitor young players as needed.</p>
-                    <p><sup>3</sup> The experience is rated “All Ages” by ROBLOX based on a content questionnaire submitted by Laius Entertainment. Final approval and classification are determined by ROBLOX Corporation.</p>
-				    <p><sup>4</sup> ROBLOX is a separate platform with its own Terms of Service and Privacy Policy. Laius Entertainment and Ronald’s Group are not responsible for content outside our experiences.</p>
-                </small>
+					<p>
+						<sup>1</sup>
+						Ronald’s Group &amp; Ronald’s Restaurant are
+						<b>not</b>
+						affiliated, sponsored, endorsed, or connected in any way with McDonald’s Corporation or its affiliates.</p>
+					<p>
+						<sup>2</sup>
+						While we maintain a dedicated moderation team, full supervision depends on both in-game staff and ROBLOX's moderation tools. Parents should monitor young players as needed.</p>
+					<p>
+						<sup>3</sup>
+						The experience is rated “All Ages” by ROBLOX based on a content questionnaire submitted by Laius Entertainment. Final approval and classification are determined by ROBLOX Corporation.</p>
+					<p>
+						<sup>4</sup>
+						ROBLOX is a separate platform with its own Terms of Service and Privacy Policy. Laius Entertainment and Ronald’s Group are not responsible for content outside our experiences.</p>
+				</small>
 				<br>
 				<br>
 				<div class="ml-embedded" data-form="LTrDOY" id="newsletter"></div>
@@ -314,6 +349,8 @@
 		</footer>
 		<script src="/scripts/ui.js"></script>
 		<script src="/scripts//channeltalk.js"></script>
-        <script src="/scripts/news-slider.js"></script>
-        <script src="/scripts/newsletter.js"></script>
+		<script src="/scripts/news-slider.js"></script>
+		<script src="/scripts/newsletter.js"></script>
+		<script src="/scripts/adjust-navbar.js"></script>
+	</body>
 </html>

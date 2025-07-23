@@ -1,9 +1,8 @@
-
-    /*
+/*
     Developed by: Igor Kalen
     Contact: igor@igorkalen.dev
-    Date: July 21, 2025
-    Last Updated: July 21, 2025
+    Date: July 23, 2025
+    Last Updated: July 23, 2025
 
     ---
     Copyright (c) 2025 Laius Group. All rights reserved.
@@ -19,8 +18,22 @@
     specific agreements. 
  */
 
-(function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
-.push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
-n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
-(window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
-ml('account', '1681123');
+function adjustNavbarOffset() {
+    const banner = document.getElementById("announcementBanner");
+    const navbar = document.querySelector(".navbar");
+
+    if (banner && navbar) {
+      const isHidden = banner.classList.contains("hidden");
+      navbar.style.top = isHidden ? '0' : `${banner.offsetHeight}px`;
+    }
+  }
+
+  window.addEventListener('load', adjustNavbarOffset);
+
+  window.addEventListener('resize', adjustNavbarOffset);
+
+  function closeBanner() {
+    const banner = document.getElementById("announcementBanner");
+    banner.classList.add("hidden");
+    adjustNavbarOffset();
+  }

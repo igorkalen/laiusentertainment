@@ -2,6 +2,7 @@
     Developed by: Igor Kalen
     Contact: igor@igorkalen.dev
     Date: July 15, 2025
+    Last Updated: July 15, 2025
 
     ---
     Copyright (c) 2025 Laius Group. All rights reserved.
@@ -16,6 +17,7 @@
     access to user-generated content, which may utilize parts of this code under
     specific agreements. 
  */
+
 (function(){
   var w = window;
   if(w.ChannelIO){
