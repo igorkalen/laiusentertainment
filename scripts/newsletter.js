@@ -1,22 +1,21 @@
+ /*
+    Developed by: Igor Kalen  
+    Contact: igor@igorkalen.dev  
+    Creation Date: July 31, 2025  
+    Last Updated: August 1, 2025
+    Version: 1.0.0
+    Status: IN PRODUCTION
+    File: newsletter.js
 
-    /*
-    Developed by: Igor Kalen
-    Contact: igor@igorkalen.dev
-    Date: July 21, 2025
-    Last Updated: July 21, 2025
+    ----
+    © 2025 Laius Entertainment. All rights reserved.
 
-    ---
-    Copyright (c) 2025 Laius Group. All rights reserved.
+    This code is the exclusive property of Laius Entertainment.  
+    Unauthorized use, copying, distribution, or modification  
+    is strictly prohibited.
 
-    This code and its contents are proprietary to Laius Group. Unauthorized use,
-    reproduction, distribution, or modification of any part of this code is strictly
-    prohibited without explicit written permission from Laius Group.
-
-    This code is intended solely for internal use by official Laius Group operations
-    and deployment on verified domains and subdomains controlled by Laius Group.
-    This restriction does not apply to domains or subdomains where customers have
-    access to user-generated content, which may utilize parts of this code under
-    specific agreements. 
+    For internal use only on systems, services, and domains  
+    officially managed by Laius Entertainment.
  */
 
 (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
