@@ -21,7 +21,7 @@
             --primary: #27742d;
             --primary-light: #2f8235;
             --primary-dark: #1e5d22;
-            --text-primary: #1a1a1a;
+            --text-primary: #3a3a3f;
             --text-secondary: #666666;
             --text-muted: #999999;
             --background: #ffffff;
@@ -31,6 +31,92 @@
             --shadow: rgba(0, 0, 0, 0.04);
             --shadow-md: rgba(0, 0, 0, 0.08);
         }
+
+        .feedback-popup {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background: var(--background);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    max-width: 320px;
+    box-shadow: 0 8px 32px var(--shadow-md);
+    z-index: 10001;
+    transform: translateY(100px);
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.feedback-popup.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.feedback-popup.hide {
+    transform: translateY(100px);
+    opacity: 0;
+}
+
+.feedback-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.feedback-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.feedback-close {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 0;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+}
+
+.feedback-close:hover {
+    background: var(--background-subtle);
+    color: var(--text-primary);
+}
+
+.feedback-text {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin-bottom: 1.5rem;
+}
+
+.feedback-btn {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: 100%;
+}
+
+.feedback-btn:hover {
+    background: var(--primary-dark);
+    transform: translateY(-1px);
+}
 
         .announcement-banner {
             background: var(--primary);
@@ -389,6 +475,14 @@
             justify-content: center;
             color: white;
         }
+
+
+.experience-icon img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 8px;
+}
 
         .experience-icon svg {
             width: 28px;
@@ -904,4 +998,10 @@
             .news-arrow {
                 display: none;
             }
+             .feedback-popup {
+        bottom: 15px;
+        left: 15px;
+        right: 15px;
+        max-width: none;
+    }
         }
