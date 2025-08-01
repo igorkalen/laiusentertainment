@@ -1,1234 +1,390 @@
 <!DOCTYPE html>
 <!--
-    Developed by: Igor Kalen  
-    Contact: igor@igorkalen.dev  
-    Creation Date: July 31, 2025  
-    Last Updated: August 1, 2025
-    Version: 0.5.0
-    Status: IN DEVELOPMENT
-    File: index.html
-
-    ----
-    © 2025 Laius Entertainment. All rights reserved.
-
-    This code is the exclusive property of Laius Entertainment.  
-    Unauthorized use, copying, distribution, or modification  
-    is strictly prohibited.
-
-    For internal use only on systems, services, and domains  
-    officially managed by Laius Entertainment.
--->
+   Developed by: Igor Kalen  
+   Contact: igor@igorkalen.dev  
+   Creation Date: July 31, 2025  
+   Last Updated: August 1, 2025
+   Version: 1.0.0
+   Status: IN PRODUCTION
+   File: index.html
+   
+   ----
+   © 2025 Laius Entertainment. All rights reserved.
+   
+   This code is the exclusive property of Laius Entertainment.  
+   Unauthorized use, copying, distribution, or modification  
+   is strictly prohibited.
+   
+   For internal use only on systems, services, and domains  
+   officially managed by Laius Entertainment.
+   -->
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - Laius Entertainment</title>
-    <link rel="icon" type="image/png" href="/files/website-images/favicon.png">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary: #27742d;
-            --primary-light: #2f8235;
-            --primary-dark: #1e5d22;
-            --text-primary: #1a1a1a;
-            --text-secondary: #666666;
-            --text-muted: #999999;
-            --background: #ffffff;
-            --background-subtle: #fafafa;
-            --border: #e5e7eb;
-            --border-light: #f3f4f6;
-            --shadow: rgba(0, 0, 0, 0.04);
-            --shadow-md: rgba(0, 0, 0, 0.08);
-        }
-
-        .announcement-banner {
-            background: var(--primary);
-            color: white;
-            padding: 12px 20px;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 10000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 14px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .announcement-banner.hidden {
-            transform: translateY(-100%);
-        }
-
-        .announcement-content {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            max-width: 1200px;
-            width: 100%;
-            position: relative;
-        }
-
-        .announcement-icon {
-            flex-shrink: 0;
-            width: 20px;
-            height: 20px;
-        }
-
-        .announcement-text {
-            text-align: center;
-            line-height: 1.4;
-        }
-
-        .announcement-text strong {
-            font-weight: 600;
-        }
-
-        .announcement-text a {
-            color: white;
-            text-decoration: underline;
-            font-weight: 500;
-        }
-
-        .announcement-text a:hover {
-            text-decoration: none;
-        }
-
-        .close-button {
-            position: absolute;
-            right: 0;
-            background: none;
-            border: none;
-            color: white;
-            cursor: pointer;
-            padding: 4px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background-color 0.3s ease;
-            width: 24px;
-            height: 24px;
-        }
-
-        .close-button:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-        }
-
-        .close-button svg {
-            width: 16px;
-            height: 16px;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            line-height: 1.6;
-            color: var(--text-primary);
-            background: var(--background);
-            font-size: 16px;
-        }
-
-        .navbar {
-            position: fixed;
-            top: 44px;
-            width: 100%;
-            z-index: 1000;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border);
-            transition: all 0.3s ease;
-        }
-
-        .navbar.banner-hidden {
-            top: 0;
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 70px;
-        }
-
-       .logo {
-  display: flex;
-  align-items: center;
-  height: 60px;
-  transition: opacity 0.2s ease;
-}
-
-.logo img {
-  height: 100%;
-  width: auto;
-  display: block;
-}
-
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        .nav-link {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: 400;
-            font-size: 0.95rem;
-            transition: color 0.2s ease;
-        }
-
-        .nav-link:hover {
-            color: var(--primary);
-        }
-
-        .hero {
-            padding: 184px 2rem 100px;
-            text-align: center;
-            background: var(--background);
-        }
-
-        .hero.banner-hidden {
-            padding-top: 140px;
-        }
-
-        .hero-container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: var(--background-subtle);
-            border: 1px solid var(--border);
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
-            font-size: 0.875rem;
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-        }
-
-        .hero-title {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: clamp(2.5rem, 6vw, 4rem);
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 1.5rem;
-            line-height: 1.1;
-        }
-
-        .hero-subtitle {
-            font-size: 1.25rem;
-            color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-            font-weight: 400;
-        }
-
-        .hero-description {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            margin-bottom: 3rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.6;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 0.875rem 1.75rem;
-            border-radius: 8px;
-            font-weight: 500;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: all 0.2s ease;
-            font-size: 0.95rem;
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn-primary {
-            background: var(--primary);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background: var(--primary-dark);
-            transform: translateY(-1px);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--text-primary);
-            border: 1px solid var(--border);
-        }
-
-        .btn-secondary:hover {
-            background: var(--background-subtle);
-            border-color: var(--primary);
-        }
-
-        .experiences-section {
-            padding: 100px 2rem;
-            background: var(--background-subtle);
-        }
-
-        .section-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 2.5rem;
-            font-weight: 600;
-            text-align: center;
-            margin-bottom: 3rem;
-            color: var(--text-primary);
-        }
-
-        .experiences-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 2rem;
-        }
-
-        .experience-card {
-            background: var(--background);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 2rem;
-            transition: all 0.2s ease;
-        }
-
-        .experience-card:hover {
-            border-color: var(--primary);
-            box-shadow: 0 4px 20px var(--shadow-md);
-            transform: translateY(-2px);
-        }
-
-        .experience-header {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .experience-icon {
-            width: 48px;
-            height: 48px;
-            background: var(--primary);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-        }
-
-        .experience-icon svg {
-            width: 28px;
-            height: 28px;
-            fill: currentColor;
-        }
-
-        .experience-title {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-
-        .experience-description {
-            color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
-        }
-
-        .experience-stats {
-            display: flex;
-            gap: 0.75rem;
-            margin-bottom: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        .stat {
-            background: var(--background-subtle);
-            padding: 0.375rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.875rem;
-            color: var(--text-secondary);
-            border: 1px solid var(--border-light);
-        }
-
-        .experience-links {
-            display: flex;
-            gap: 0.75rem;
-            flex-wrap: wrap;
-        }
-
-        .experience-link {
-            padding: 0.625rem 1.25rem;
-            background: var(--background-subtle);
-            color: var(--text-primary);
-            text-decoration: none;
-            border-radius: 6px;
-            font-weight: 500;
-            font-size: 0.875rem;
-            transition: all 0.2s ease;
-            border: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            gap: 0.375rem;
-        }
-
-        .experience-link svg {
-            width: 16px;
-            height: 16px;
-            fill: currentColor;
-        }
-
-        .benefits-section {
-            padding: 100px 2rem;
-            background: var(--background);
-        }
-
-        .benefits-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .benefit-card {
-            background: var(--background-subtle);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 2rem;
-            text-align: center;
-            transition: all 0.2s ease;
-        }
-
-        .benefit-card:hover {
-            border-color: var(--primary);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px var(--shadow-md);
-        }
-
-        .benefit-icon {
-            width: 64px;
-            height: 64px;
-            background: var(--primary);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1.5rem;
-            color: white;
-        }
-
-        .benefit-icon svg {
-            width: 32px;
-            height: 32px;
-            fill: currentColor;
-        }
-
-        .benefit-title {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: var(--text-primary);
-        }
-
-        .benefit-description {
-            color: var(--text-secondary);
-            line-height: 1.6;
-        }
-
-        .parents-section {
-            padding: 100px 2rem;
-            background: var(--background-subtle);
-        }
-
-        .info-card {
-            background: var(--background);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            transition: all 0.2s ease;
-        }
-
-        .info-card:hover {
-            border-color: var(--primary);
-            box-shadow: 0 4px 20px var(--shadow-md);
-        }
-
-        .info-title {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: var(--text-primary);
-        }
-
-        .info-card p {
-            color: var(--text-secondary);
-            line-height: 1.6;
-            margin-bottom: 1rem;
-        }
-
-        .info-card p:last-child {
-            margin-bottom: 0;
-        }
-
-        .info-card ol, .info-card ul {
-            margin-left: 1.5rem;
-            color: var(--text-secondary);
-            line-height: 1.6;
-        }
-
-        .info-card li {
-            margin-bottom: 0.5rem;
-        }
-
-        .info-card a {
-            color: var(--primary);
-            text-decoration: underline;
-            font-weight: 500;
-        }
-
-        .info-card a:hover {
-            text-decoration: none;
-        }
-
-        .news-section {
-            padding: 100px 2rem;
-            background: var(--background);
-        }
-
-        .news-container {
-            position: relative;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .news-slider-wrapper {
-            position: relative;
-            overflow: hidden;
-            border-radius: 12px;
-        }
-
-        .news-slider {
-            display: flex;
-            transition: transform 0.3s ease;
-            gap: 2rem;
-        }
-
-       .news-card {
-  position: relative;
-  flex: 0 0 calc(100% - 7rem);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  overflow: hidden;
-  transition: all 0.2s ease;
-  background: var(--background);
-  margin: 0 3.5rem;
-}
-
-.news-card:hover {
-  border-color: var(--primary);
-  box-shadow: 0 4px 20px var(--shadow-md);
-}
-
-.news-arrow {
-  position: absolute;
-  top: 50%;
-  right: 1rem;
-  transform: translateY(-50%);
-  background: rgba(255, 255, 255, 0.95);
-  border: 1px solid var(--border);
-  border-radius: 50%;
-  width: 48px;
-  height: 48px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  z-index: 10;
-  box-shadow: 0 4px 12px var(--shadow);
-}
-
-        .news-arrow:hover:not(:disabled) {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
-        }
-
-        .news-arrow:disabled {
-            opacity: 0.4;
-            cursor: not-allowed;
-        }
-
-        .news-arrow.prev {
-            left: 0px;
-        }
-
-        .news-arrow.next {
-            right: -0px;
-        }
-
-        .news-arrow svg {
-            width: 20px;
-            height: 20px;
-            fill: currentColor;
-        }
-
-        .news-indicators {
-            display: flex;
-            justify-content: center;
-            gap: 8px;
-            margin-top: 2rem;
-            padding-bottom: 1px; /* cut out fix */
-        }
-
-        .indicator {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: var(--border);
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .indicator.active {
-            background: var(--primary);
-            transform: scale(1.2);
-        }
-
-        .indicator:hover {
-            background: var(--primary);
-        }
-
-        .news-image {
-  width: 100%;
-  height: 200px;
-  overflow: hidden;
-  position: relative;
-}
-
-.news-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  display: block;
-  max-width: 100%;
-  max-height: 100%;
-}
-
-        .news-content {
-            padding: 1.5rem;
-        }
-
-        .news-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1rem;
-            font-size: 0.875rem;
-            color: var(--text-muted);
-        }
-
-        .news-title {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 0.75rem;
-            color: var(--text-primary);
-            line-height: 1.4;
-        }
-
-        .news-excerpt {
-            color: var(--text-secondary);
-            margin-bottom: 1rem;
-            line-height: 1.6;
-        }
-
-        .read-more {
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.9rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.25rem;
-            transition: gap 0.2s ease;
-        }
-
-.read-more svg {
-  display: block;
-  transform: translateY(1px);
-}
-
-        .read-more:hover {
-            gap: 0.5rem;
-        }
-
-        .contact-section {
-            padding: 100px 2rem;
-            background: var(--background-subtle);
-            text-align: center;
-        }
-
-        .contact-title {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 2.5rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            color: var(--text-primary);
-        }
-
-        .contact-description {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            margin-bottom: 2.5rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .contact-links {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .contact-link {
-            padding: 0.875rem 1.75rem;
-            background: var(--background);
-            border: 1px solid var(--border);
-            color: var(--text-primary);
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: 500;
-            transition: all 0.2s ease;
-        }
-
-        .contact-link:hover {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
-            transform: translateY(-1px);
-        }
-
-        .footer {
-            background: var(--background);
-            padding: 3rem 2rem 2rem;
-            border-top: 1px solid var(--border);
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 2rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: 2rem;
-        }
-
-        .footer-link {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: color 0.2s ease;
-        }
-
-        .footer-link:hover {
-            color: var(--primary);
-        }
-
-        .footer-text {
-            color: var(--text-muted);
-            font-size: 0.875rem;
-        }
-
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--text-primary);
-            font-size: 1.25rem;
-            cursor: pointer;
-            padding: 0.5rem;
-        }
-
-        @media (max-width: 768px) {
-            .nav-menu {
-                display: none;
-            }
-
-            .mobile-menu-btn {
-                display: block;
-            }
-
-            .experiences-grid,
-            .benefits-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .experiences-grid .experience-card {
-                min-width: auto;
-            }
-
-            .cta-buttons,
-            .contact-links {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .footer-links {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .nav-container {
-                padding: 0 1rem;
-            }
-
-            .hero,
-            .experiences-section,
-            .benefits-section,
-            .news-section,
-            .contact-section {
-                padding-left: 1rem;
-                padding-right: 1rem;
-            }
-        }
-
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.6s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    </style>
-</head>
-<body>
-    <div class="announcement-banner" id="announcementBanner">
-        <div class="announcement-content">
-            <div class="announcement-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="currentColor">
-                    <path d="M480-280q17 0 28.5-11.5T520-320q0-17-11.5-28.5T480-360q-17 0-28.5 11.5T440-320q0 17 11.5 28.5T480-280Zm-40-160h80v-240h-80v240Zm40 360q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Z"/>
-                </svg>
-            </div>
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Home - Laius Entertainment</title>
+      <link rel="icon" type="image/png" href="/files/website-images/favicon.png">
+      <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="css/index.css">
+   </head>
+   <body>
+      <div class="announcement-banner" id="announcementBanner">
+         <div class="announcement-content">
+            <!--<div class="announcement-icon">
+               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="currentColor">
+                   <path d="M480-280q17 0 28.5-11.5T520-320q0-17-11.5-28.5T480-360q-17 0-28.5 11.5T440-320q0 17 11.5 28.5T480-280Zm-40-160h80v-240h-80v240Zm40 360q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Z"/>
+               </svg>
+               </div>-->
             <div class="announcement-text">
-                <strong>Introducing Wayfresh!</strong>
-                Work in a store as a cashier, security, manager, and more in this <strong>all-ages</strong> shopping simulation. Releasing next month! <a href="/files/news/article_07-23-2025.html">Learn More</a>
+               ✨ We’ve refreshed our look! Explore the new Laius Entertainment site and <a data-tally-open="w8497Y" data-tally-layout="modal" data-tally-width="800" data-tally-emoji-text="👋" data-tally-emoji-animation="wave">share your feedback</a>.
             </div>
-            <button class="close-button" onclick="closeBanner()" aria-label="Close announcement">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="currentColor">
-                    <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/>
-                </svg>
-            </button>
-        </div>
-    </div>
-
-    <nav class="navbar" id="navbar">
-        <div class="nav-container">
+            <!-- <button class="close-button" onclick="closeBanner()" aria-label="Close announcement">
+               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="currentColor">
+                   <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/>
+               </svg>
+               </button>-->
+         </div>
+      </div>
+      <nav class="navbar" id="navbar">
+         <div class="nav-container">
             <a href="/" class="logo">
-  <img src="/files/website-images/entertainment.png" alt="Laius Entertainment logo" />
-</a>
+            <img src="/files/website-images/entertainment.png" alt="Laius Entertainment logo" />
+            </a>
             <ul class="nav-menu">
-                <li><a href="#home" class="nav-link">Home</a></li>
-                <li><a href="#experiences" class="nav-link">Experiences</a></li>
-                <li><a href="#parents" class="nav-link">For Parents</a></li>
-                <li><a href="#news" class="nav-link">News</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
+               <li><a href="#home" class="nav-link">Home</a></li>
+               <li><a href="#experiences" class="nav-link">Experiences</a></li>
+               <li><a href="#parents" class="nav-link">For Parents</a></li>
+               <li><a href="#news" class="nav-link">News</a></li>
+               <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
-            <button class="mobile-menu-btn">☰</button>
-        </div>
-    </nav>
-
-    <section class="hero" id="home">
-        <div class="hero-container">
+            <!--<button class="mobile-menu-btn" id="mobileMenuBtn">
+               </button>-->
+         </div>
+      </nav>
+      <!-- <div class="mobile-nav-menu" id="mobileNavMenu">
+         <ul>
+             <li><a href="#home" class="nav-link">Home</a></li>
+             <li><a href="#experiences" class="nav-link">Experiences</a></li>
+             <li><a href="#parents" class="nav-link">For Parents</a></li>
+             <li><a href="#news" class="nav-link">News</a></li>
+             <li><a href="#contact" class="nav-link">Contact</a></li>
+         </ul>
+         </div> -->
+      <section class="hero" id="home">
+         <div class="hero-container">
             <div class="hero-badge">
-                <span>🎮</span>
-                <span>Creators of educational, safe, and fun ROBLOX experiences.</span>
+               <span>🎮</span>
+               <span>Creators of educational, safe, and fun ROBLOX experiences.</span>
             </div>
             <h1 class="hero-title">Laius Entertainment</h1>
             <p class="hero-description">
-                We create fun and educational gaming experiences on ROBLOX that teach valuable life skills. From customer service to teamwork, our games help players of all ages learn while having fun in safe, moderated environments.
+               We create fun and educational gaming experiences on ROBLOX that teach valuable life skills. From customer service to teamwork, our games help players of all ages learn while having fun in safe, moderated environments.
             </p>
             <div class="cta-buttons">
-                <a href="#experiences" class="btn btn-primary">
-                    Explore Our Experiences
-                </a>
-                <a href="#parents" class="btn btn-secondary">
-                    Info for Parents
-                </a>
+               <a href="#experiences" class="btn btn-primary">
+               Explore Our Experiences
+               </a>
+               <a href="#parents" class="btn btn-secondary">
+               Info for Parents
+               </a>
             </div>
-        </div>
-    </section>
-
-    <section class="experiences-section" id="experiences">
-        <div class="section-container">
+         </div>
+      </section>
+      <section class="experiences-section" id="experiences">
+         <div class="section-container">
             <h2 class="section-title fade-in">Our Experiences</h2>
             <div class="experiences-grid">
-                <div class="experience-card fade-in">
-                    <div class="experience-header">
-                        <div class="experience-icon">
-                            <img src="">
-                        </div>
-                        <h3 class="experience-title">Ronald's Restaurant</h3>
-                    </div>
-                    <p class="experience-description">
-                        Join a fast-food simulation inspired by the world's biggest fast food chain!<sup>1</sup> Play as a cook, cashier, janitor, customer, or manager. Learn customer service, teamwork, and communication skills in our friendly environment.
-                    </p>
-                    <div class="experience-stats">
-                        <span class="stat">All Ages</span>
-                        <span class="stat">Teamwork</span>
-                        <span class="stat">Customer Service</span>
-                    </div>
-                    <div class="experience-links">
-                        <a href="https://www.roblox.com/join/nmcsv" class="experience-link">
-                          <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 50 50">
-    <path d="M 12.125 1.9980469 A 1.0001 1.0001 0 0 0 11.199219 2.7441406 L 2.0332031 37.576172 A 1.0001 1.0001 0 0 0 2.7460938 38.798828 L 37.580078 47.966797 A 1.0001 1.0001 0 0 0 38.802734 47.253906 L 47.96875 12.419922 A 1.0001 1.0001 0 0 0 47.255859 11.197266 L 12.421875 2.03125 A 1.0001 1.0001 0 0 0 12.125 1.9980469 z M 21.5 19 L 31 21.5 L 28.5 31 L 19 28.5 L 21.5 19 z"></path>
-</svg>
-                            Play on ROBLOX
-                        </a>
-                        <a href="https://discord.gg/mcroblox" class="experience-link">
-                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--!Font Awesome Free v7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M492.5 69.8c-.2-.3-.4-.6-.8-.7-38.1-17.5-78.4-30-119.7-37.1-.4-.1-.8 0-1.1 .1s-.6 .4-.8 .8c-5.5 9.9-10.5 20.2-14.9 30.6-44.6-6.8-89.9-6.8-134.4 0-4.5-10.5-9.5-20.7-15.1-30.6-.2-.3-.5-.6-.8-.8s-.7-.2-1.1-.2c-41.3 7.1-81.6 19.6-119.7 37.1-.3 .1-.6 .4-.8 .7-76.2 113.8-97.1 224.9-86.9 334.5 0 .3 .1 .5 .2 .8s.3 .4 .5 .6c44.4 32.9 94 58 146.8 74.2 .4 .1 .8 .1 1.1 0s.7-.4 .9-.7c11.3-15.4 21.4-31.8 30-48.8 .1-.2 .2-.5 .2-.8s0-.5-.1-.8-.2-.5-.4-.6-.4-.3-.7-.4c-15.8-6.1-31.2-13.4-45.9-21.9-.3-.2-.5-.4-.7-.6s-.3-.6-.3-.9 0-.6 .2-.9 .3-.5 .6-.7c3.1-2.3 6.2-4.7 9.1-7.1 .3-.2 .6-.4 .9-.4s.7 0 1 .1c96.2 43.9 200.4 43.9 295.5 0 .3-.1 .7-.2 1-.2s.7 .2 .9 .4c2.9 2.4 6 4.9 9.1 7.2 .2 .2 .4 .4 .6 .7s.2 .6 .2 .9-.1 .6-.3 .9-.4 .5-.6 .6c-14.7 8.6-30 15.9-45.9 21.8-.2 .1-.5 .2-.7 .4s-.3 .4-.4 .7-.1 .5-.1 .8 .1 .5 .2 .8c8.8 17 18.8 33.3 30 48.8 .2 .3 .6 .6 .9 .7s.8 .1 1.1 0c52.9-16.2 102.6-41.3 147.1-74.2 .2-.2 .4-.4 .5-.6s.2-.5 .2-.8c12.3-126.8-20.5-236.9-86.9-334.5zm-302 267.7c-29 0-52.8-26.6-52.8-59.2s23.4-59.2 52.8-59.2c29.7 0 53.3 26.8 52.8 59.2 0 32.7-23.4 59.2-52.8 59.2zm195.4 0c-29 0-52.8-26.6-52.8-59.2s23.4-59.2 52.8-59.2c29.7 0 53.3 26.8 52.8 59.2 0 32.7-23.2 59.2-52.8 59.2z"/></svg>
-                            Join Discord
-                        </a>
-                         <a href="https://guilded.gg/mcroblox" class="experience-link">
-                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free v7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M443.9 64L5 64c0 103.3 22.2 180.1 43.4 222.4 64.1 127.8 176 161.6 177.3 161.6 55.7-20.5 104.5-56.3 140.6-103.5 25.9-33.9 53.1-87.2 65.9-145.8l-259.9 0c4.1 36.4 22.2 67.9 45.1 86.9l88.6 0c-17 28.2-48.2 54.4-80.5 69.5-31.2-13.3-69.1-46.5-96.5-98.4-26.7-53.8-27.1-105.9-27.1-105.9l336.1 0c4-28.8 5.9-57.9 5.9-86.9z"/></svg>
-                            Join Guilded
-                        </a>
-                    </div>
-                </div>
-
-                <div class="experience-card fade-in">
-                    <div class="experience-header">
-                        <div class="experience-icon">
-                            <img src="">
-                        </div>
-                        <h3 class="experience-title">Wayfresh</h3>
-                    </div>
-                    <p class="experience-description">
-                      Dive into retail simulation where you can be a cashier, security guard, or store manager. Learn retail skills while having fun in this all-ages shopping experience that teaches customer service and responsibility.
-                    </p>
-                    <div class="experience-stats">
-                        <span class="stat">Coming Soon</span>
-                        <span class="stat">All Ages</span>
-                        <span class="stat">Retail Skills</span>
-                        <span class="stat">Customer Service</span>
-                    </div>
-                    <div class="experience-links">
-                        <a href="#news" class="experience-link">
-                           <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#000000"><path d="M189-95q-39.05 0-66.53-27.47Q95-149.95 95-189v-582q0-39.46 27.47-67.23Q149.95-866 189-866h414q19.2 0 36.6 8 17.4 8 31.4 21l166 166q13 14 21 31.4t8 36.6v414q0 39.05-27.77 66.53Q810.46-95 771-95H189Zm0-94h582v-399H635q-19.75 0-33.37-13.63Q588-615.25 588-635v-136H189v582Zm468.39-108q13.36 0 22.49-9.89 9.12-9.89 9.12-23.48t-9.2-22.61Q670.6-362 657-362H302.66q-13.41 0-22.53 9.19-9.13 9.2-9.13 22.79 0 13.6 9.84 23.31 9.83 9.71 22.98 9.71h353.57ZM470-592q13.33 0 23.16-9.89 9.84-9.89 9.84-23.29 0-13.4-9.84-23.11Q483.33-658 470-658H304q-13.33 0-23.16 9.89-9.84 9.89-9.84 23.29 0 13.4 9.84 23.11Q290.67-592 304-592h166Zm186.43 148q13.32 0 22.95-9.89 9.62-9.89 9.62-23.29 0-13.4-9.84-23.11-9.83-9.71-22.93-9.71H303.57q-13.32 0-22.94 9.89-9.63 9.89-9.63 23.29 0 13.4 9.84 23.11 9.83 9.71 22.93 9.71h352.66ZM189-771v183.43V-771v582-582Z"/></svg>
-                            Learn More
-                        </a>
-                    </div>
-                </div>
+               <div class="experience-card fade-in">
+                  <div class="experience-header">
+                     <div class="experience-icon">
+                        <img src="">
+                     </div>
+                     <h3 class="experience-title">Ronald's Restaurant</h3>
+                  </div>
+                  <p class="experience-description">
+                     Join a fast-food simulation inspired by the world's biggest fast food chain!<sup>1</sup> Play as a cook, cashier, janitor, customer, or manager. Learn customer service, teamwork, and communication skills in our friendly environment.
+                  </p>
+                  <div class="experience-stats">
+                     <span class="stat">All Ages</span>
+                     <span class="stat">Teamwork</span>
+                     <span class="stat">Customer Service</span>
+                  </div>
+                  <div class="experience-links">
+                     <a href="https://www.roblox.com/join/nmcsv" class="experience-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 50 50">
+                           <path d="M 12.125 1.9980469 A 1.0001 1.0001 0 0 0 11.199219 2.7441406 L 2.0332031 37.576172 A 1.0001 1.0001 0 0 0 2.7460938 38.798828 L 37.580078 47.966797 A 1.0001 1.0001 0 0 0 38.802734 47.253906 L 47.96875 12.419922 A 1.0001 1.0001 0 0 0 47.255859 11.197266 L 12.421875 2.03125 A 1.0001 1.0001 0 0 0 12.125 1.9980469 z M 21.5 19 L 31 21.5 L 28.5 31 L 19 28.5 L 21.5 19 z"></path>
+                        </svg>
+                        Play on ROBLOX
+                     </a>
+                     <a href="https://discord.gg/mcroblox" class="experience-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                           <!--!Font Awesome Free v7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+                           <path d="M492.5 69.8c-.2-.3-.4-.6-.8-.7-38.1-17.5-78.4-30-119.7-37.1-.4-.1-.8 0-1.1 .1s-.6 .4-.8 .8c-5.5 9.9-10.5 20.2-14.9 30.6-44.6-6.8-89.9-6.8-134.4 0-4.5-10.5-9.5-20.7-15.1-30.6-.2-.3-.5-.6-.8-.8s-.7-.2-1.1-.2c-41.3 7.1-81.6 19.6-119.7 37.1-.3 .1-.6 .4-.8 .7-76.2 113.8-97.1 224.9-86.9 334.5 0 .3 .1 .5 .2 .8s.3 .4 .5 .6c44.4 32.9 94 58 146.8 74.2 .4 .1 .8 .1 1.1 0s.7-.4 .9-.7c11.3-15.4 21.4-31.8 30-48.8 .1-.2 .2-.5 .2-.8s0-.5-.1-.8-.2-.5-.4-.6s-.4-.3-.7-.4c-15.8-6.1-31.2-13.4-45.9-21.9-.3-.2-.5-.4-.7-.6s-.3-.6-.3-.9 0-.6 .2-.9 .3-.5 .6-.7c3.1-2.3 6.2-4.7 9.1-7.1 .3-.2 .6-.4 .9-.4s.7 0 1 .1c96.2 43.9 200.4 43.9 295.5 0 .3-.1 .7-.2 1-.2s.7 .2 .9 .4c2.9 2.4 6 4.9 9.1 7.2 .2 .2 .4 .4 .6 .7s.2 .6 .2 .9-.1 .6-.3 .9-.4 .5-.6 .6c-14.7 8.6-30 15.9-45.9 21.8-.2 .1-.5 .2-.7 .4s-.3 .4-.4 .7-.1 .5-.1 .8 .1 .5 .2 .8c8.8 17 18.8 33.3 30 48.8 .2 .3 .6 .6 .9 .7s.8 .1 1.1 0c52.9-16.2 102.6-41.3 147.1-74.2 .2-.2 .4-.4 .5-.6s.2-.5 .2-.8c12.3-126.8-20.5-236.9-86.9-334.5zm-302 267.7c-29 0-52.8-26.6-52.8-59.2s23.4-59.2 52.8-59.2c29.7 0 53.3 26.8 52.8 59.2 0 32.7-23.4 59.2-52.8 59.2zm195.4 0c-29 0-52.8-26.6-52.8-59.2s23.4-59.2 52.8-59.2c29.7 0 53.3 26.8 52.8 59.2 0 32.7-23.2 59.2-52.8 59.2z"/>
+                        </svg>
+                        Join Discord
+                     </a>
+                     <a href="https://guilded.gg/mcroblox" class="experience-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                           <!--!Font Awesome Free v7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+                           <path d="M443.9 64L5 64c0 103.3 22.2 180.1 43.4 222.4 64.1 127.8 176 161.6 177.3 161.6 55.7-20.5 104.5-56.3 140.6-103.5 25.9-33.9 53.1-87.2 65.9-145.8l-259.9 0c4.1 36.4 22.2 67.9 45.1 86.9l88.6 0c-17 28.2-48.2 54.4-80.5 69.5-31.2-13.3-69.1-46.5-96.5-98.4-26.7-53.8-27.1-105.9-27.1-105.9l336.1 0c4-28.8 5.9-57.9 5.9-86.9z"/>
+                        </svg>
+                        Join Guilded
+                     </a>
+                  </div>
+               </div>
+               <div class="experience-card fade-in">
+                  <div class="experience-header">
+                     <div class="experience-icon">
+                        <img src="">
+                     </div>
+                     <h3 class="experience-title">Wayfresh</h3>
+                  </div>
+                  <p class="experience-description">
+                     Dive into retail simulation where you can be a cashier, security guard, or store manager. Learn retail skills while having fun in this all-ages shopping experience that teaches customer service and responsibility.
+                  </p>
+                  <div class="experience-stats">
+                     <span class="stat">Coming Soon</span>
+                     <span class="stat">All Ages</span>
+                     <span class="stat">Retail Skills</span>
+                     <span class="stat">Customer Service</span>
+                  </div>
+                  <div class="experience-links">
+                     <a href="#news" class="experience-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#000000">
+                           <path d="M189-95q-39.05 0-66.53-27.47Q95-149.95 95-189v-582q0-39.46 27.47-67.23Q149.95-866 189-866h414q19.2 0 36.6 8 17.4 8 31.4 21l166 166q13 14 21 31.4t8 36.6v414q0 39.05-27.77 66.53Q810.46-95 771-95H189Zm0-94h582v-399H635q-19.75 0-33.37-13.63Q588-615.25 588-635v-136H189v582Zm468.39-108q13.36 0 22.49-9.89 9.12-9.89 9.12-23.48t-9.2-22.61Q670.6-362 657-362H302.66q-13.41 0-22.53 9.19-9.13 9.2-9.13 22.79 0 13.6 9.84 23.31 9.83 9.71 22.98 9.71h353.57ZM470-592q13.33 0 23.16-9.89 9.84-9.89 9.84-23.29 0-13.4-9.84-23.11Q483.33-658 470-658H304q-13.33 0-23.16 9.89-9.84 9.89-9.84 23.29 0 13.4 9.84 23.11Q290.67-592 304-592h166Zm186.43 148q13.32 0 22.95-9.89 9.62-9.89 9.62-23.29 0-13.4-9.84-23.11-9.83-9.71-22.93-9.71H303.57q-13.32 0-22.94 9.89-9.63 9.89-9.63 23.29 0 13.4 9.84 23.11 9.83 9.71 22.93 9.71h352.66ZM189-771v183.43V-771v582-582Z"/>
+                        </svg>
+                        Learn More
+                     </a>
+                  </div>
+               </div>
             </div>
-        </div>
-    </section>
-
-    <section class="benefits-section" id="benefits">
-        <div class="section-container">
+         </div>
+      </section>
+      <section class="benefits-section" id="benefits">
+         <div class="section-container">
             <h2 class="section-title fade-in">Benefits of Playing Our Experiences</h2>
             <div class="benefits-grid">
-                <div class="benefit-card fade-in">
-                    <div class="benefit-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="currentColor">
-                            <path d="M480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-58q35-36 58.5-82.5T577-331H384q14 60 37.5 108t58.5 85Zm-85-12q-25-38-43-82t-30-99H172q38 71 88 111.5T395-150Zm171-1q72-23 129.5-69T788-331H639q-13 54-30.5 98T566-151ZM152-391h159q-3-27-3.5-48.5T307-482q0-25 1-44.5t4-43.5H152q-7 24-9.5 43t-2.5 45q0 26 2.5 46.5T152-391Zm221 0h215q4-31 5-50.5t1-40.5q0-20-1-38.5t-5-49.5H373q-4 31-5 49.5t-1 38.5q0 21 1 40.5t5 50.5Zm275 0h160q7-24 9.5-44.5T820-482q0-26-2.5-45t-9.5-43H649q3 35 4 53.5t1 34.5q0 22-1.5 41.5T648-391Zm-10-239h150q-33-69-90.5-115T565-810q25 37 42.5 80T638-630Zm-254 0h194q-11-53-37-102.5T480-820q-32 27-54 71t-42 119Zm-212 0h151q11-54 28-96.5t43-82.5q-75 19-131 64t-91 115Z"/>
-                        </svg>
-                    </div>
-                    <h3 class="benefit-title">Global Community</h3>
-                    <p class="benefit-description">
-                        Connect with players from around the world in our safe, moderated environments. Make new friends and learn about different cultures while having fun together.
-                    </p>
-                </div>
-
-                <div class="benefit-card fade-in">
-                    <div class="benefit-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="currentColor">
-                            <path d="M180-120q-24 0-42-18t-18-42v-600q0-24 18-42t42-18h207q-2-37 26-66.5t67-29.5q39 0 67 29.5t26 66.5h207q24 0 42 18t18 42v600q0 24-18 42t-42 18H180Zm300-702q13 0 21.5-8.5T510-852q0-13-8.5-21.5T480-882q-13 0-21.5 8.5T450-852q0 13 8.5 21.5T480-822ZM180-217q60-56 135.9-90.5 75.89-34.5 164-34.5 88.1 0 164.1 34.5T780-217v-563H180v563Zm302-204q58 0 98-40t40-98q0-58-40-98t-98-40q-58 0-98 40t-40 98q0 58 40 98t98 40Z"/>
-                        </svg>
-                    </div>
-                    <h3 class="benefit-title">Real-World Skills</h3>
-                    <p class="benefit-description">
-                        Learn valuable life skills like customer service, teamwork, communication, and problem-solving through engaging gameplay that feels more like fun than learning.
-                    </p>
-                </div>
-
-                <div class="benefit-card fade-in">
-                    <div class="benefit-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="currentColor">
-                            <path d="M480-260q68 0 123.5-38.5T684-400H276q25 63 80.5 101.5T480-260ZM312-520l44-42 42 42 42-42-84-86-86 86 42 42Zm250 0 42-42 44 42 42-42-86-86-84 86 42 42ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Z"/>
-                        </svg>
-                    </div>
-                    <h3 class="benefit-title">Safe & Educational</h3>
-                    <p class="benefit-description">
-                        All our experiences are designed with safety in mind, featuring active moderation and age-appropriate content that parents can trust and kids can enjoy.
-                    </p>
-                </div>
-
-                <div class="benefit-card fade-in">
-                    <div class="benefit-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="currentColor">
-                            <path d="M480-120 200-272v-240L40-600l440-240 440 240v320h-80v-276l-80 36v240L480-120Zm0-332 274-148-274-148-274 148 274 148Zm0 241 200-108v-151L480-360 280-470v151l200 108Zm0-241Zm0 90Zm0 0Z"/>
-                        </svg>
-                    </div>
-                    <h3 class="benefit-title">Academic Benefits</h3>
-                    <p class="benefit-description">
-                        Improve reading comprehension, basic math skills, and critical thinking through interactive gameplay that reinforces learning in an engaging way.
-                    </p>
-                </div>
-
-                <div class="benefit-card fade-in">
-                    <div class="benefit-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="currentColor">
-                            <path d="M320-240h320v-80H320v80Zm0-160h320v-80H320v80ZM240-80q-33 0-56.5-23.5T160-160v-640q0-33 23.5-56.5T240-880h320l240 240v480q0 33-23.5 56.5T720-80H240Zm280-520v-200H240v640h480v-440H520ZM240-800v200-200 640-640Z"/>
-                        </svg>
-                    </div>
-                    <h3 class="benefit-title">Career Preparation</h3>
-                    <p class="benefit-description">
-                        Get a head start on understanding workplace dynamics, responsibility, and professional skills through realistic job simulations in various industries.
-                    </p>
-                </div>
-
-                <div class="benefit-card fade-in">
-                    <div class="benefit-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="currentColor">
-                            <path d="M200-280v-280h80v280h-80Zm240 0v-280h80v280h-80ZM80-120v-80h800v80H80Zm600-160v-280h80v280h-80ZM80-640v-80l400-200 400 200v80H80Zm178-80h444-444Zm0 0h444L480-830 258-720Z"/>
-                        </svg>
-                    </div>
-                    <h3 class="benefit-title">Character Building</h3>
-                    <p class="benefit-description">
-                        Develop important character traits like responsibility, empathy, patience, and leadership through positive role-playing experiences and team challenges.
-                    </p>
-                </div>
+               <div class="benefit-card fade-in">
+                  <div class="benefit-icon">
+                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="currentColor">
+                        <path d="M480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-58q35-36 58.5-82.5T577-331H384q14 60 37.5 108t58.5 85Zm-85-12q-25-38-43-82t-30-99H172q38 71 88 111.5T395-150Zm171-1q72-23 129.5-69T788-331H639q-13 54-30.5 98T566-151ZM152-391h159q-3-27-3.5-48.5T307-482q0-25 1-44.5t4-43.5H152q-7 24-9.5 43t-2.5 45q0 26 2.5 46.5T152-391Zm221 0h215q4-31 5-50.5t1-40.5q0-20-1-38.5t-5-49.5H373q-4 31-5 49.5t-1 38.5q0 21 1 40.5t5 50.5Zm275 0h160q7-24 9.5-44.5T820-482q0-26-2.5-45t-9.5-43H649q3 35 4 53.5t1 34.5q0 22-1.5 41.5T648-391Zm-10-239h150q-33-69-90.5-115T565-810q25 37 42.5 80T638-630Zm-254 0h194q-11-53-37-102.5T480-820q-32 27-54 71t-42 119Zm-212 0h151q11-54 28-96.5t43-82.5q-75 19-131 64t-91 115Z"/>
+                     </svg>
+                  </div>
+                  <h3 class="benefit-title">Global Community</h3>
+                  <p class="benefit-description">
+                     Connect with players from around the world in our safe, moderated environments. Make new friends and learn about different cultures while having fun together.
+                  </p>
+               </div>
+               <div class="benefit-card fade-in">
+                  <div class="benefit-icon">
+                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="currentColor">
+                        <path d="M180-120q-24 0-42-18t-18-42v-600q0-24 18-42t42-18h207q-2-37 26-66.5t67-29.5q39 0 67 29.5t26 66.5h207q24 0 42 18t18 42v600q0 24-18 42t-42 18H180Zm300-702q13 0 21.5-8.5T510-852q0-13-8.5-21.5T480-882q-13 0-21.5 8.5T450-852q0 13 8.5 21.5T480-822ZM180-217q60-56 135.9-90.5 75.89-34.5 164-34.5 88.1 0 164.1 34.5T780-217v-563H180v563Zm302-204q58 0 98-40t40-98q0-58-40-98t-98-40q-58 0-98 40t-40 98q0 58 40 98t98 40Z"/>
+                     </svg>
+                  </div>
+                  <h3 class="benefit-title">Real-World Skills</h3>
+                  <p class="benefit-description">
+                     Learn valuable life skills like customer service, teamwork, communication, and problem-solving through engaging gameplay that feels more like fun than learning.
+                  </p>
+               </div>
+               <div class="benefit-card fade-in">
+                  <div class="benefit-icon">
+                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="currentColor">
+                        <path d="M480-260q68 0 123.5-38.5T684-400H276q25 63 80.5 101.5T480-260ZM312-520l44-42 42 42 42-42-84-86-86 86 42 42Zm250 0 42-42 44 42 42-42-86-86-84 86 42 42ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Z"/>
+                     </svg>
+                  </div>
+                  <h3 class="benefit-title">Safe & Educational</h3>
+                  <p class="benefit-description">
+                     All our experiences are designed with safety in mind, featuring active moderation and age-appropriate content that parents can trust and kids can enjoy.
+                  </p>
+               </div>
+               <div class="benefit-card fade-in">
+                  <div class="benefit-icon">
+                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="currentColor">
+                        <path d="M480-120 200-272v-240L40-600l440-240 440 240v320h-80v-276l-80 36v240L480-120Zm0-332 274-148-274-148-274 148 274 148Zm0 241 200-108v-151L480-360 280-470v151l200 108Zm0-241Zm0 90Zm0 0Z"/>
+                     </svg>
+                  </div>
+                  <h3 class="benefit-title">Academic Benefits</h3>
+                  <p class="benefit-description">
+                     Improve reading comprehension, basic math skills, and critical thinking through interactive gameplay that reinforces learning in an engaging way.
+                  </p>
+               </div>
+               <div class="benefit-card fade-in">
+                  <div class="benefit-icon">
+                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="currentColor">
+                        <path d="M320-240h320v-80H320v80Zm0-160h320v-80H320v80ZM240-80q-33 0-56.5-23.5T160-160v-640q0-33 23.5-56.5T240-880h320l240 240v480q0 33-23.5 56.5T720-80H240Zm280-520v-200H240v640h480v-440H520ZM240-800v200-200 640-640Z"/>
+                     </svg>
+                  </div>
+                  <h3 class="benefit-title">Career Preparation</h3>
+                  <p class="benefit-description">
+                     Get a head start on understanding workplace dynamics, responsibility, and professional skills through realistic job simulations in various industries.
+                  </p>
+               </div>
+               <div class="benefit-card fade-in">
+                  <div class="benefit-icon">
+                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="currentColor">
+                        <path d="M200-280v-280h80v280h-80Zm240 0v-280h80v280h-80ZM80-120v-80h800v80H80Zm600-160v-280h80v280h-80ZM80-640v-80l400-200 400 200v80H80Zm178-80h444-444Zm0 0h444L480-830 258-720Z"/>
+                     </svg>
+                  </div>
+                  <h3 class="benefit-title">Character Building</h3>
+                  <p class="benefit-description">
+                     Develop important character traits like responsibility, empathy, patience, and leadership through positive role-playing experiences and team challenges.
+                  </p>
+               </div>
             </div>
-        </div>
-    </section>
-
-    <section class="parents-section" id="parents">
-        <div class="section-container">
+         </div>
+      </section>
+      <section class="parents-section" id="parents">
+         <div class="section-container">
             <h2 class="section-title fade-in">Information for Parents</h2>
             <div class="info-card fade-in">
-                <h3 class="info-title">What is Laius Entertainment?</h3>
-                <p>
-                    Laius Entertainment creates educational ROBLOX experiences designed to teach valuable life skills through engaging gameplay. Our flagship experience, Ronald's Restaurant, simulates working at a fast-paced restaurant environment where children learn customer service, teamwork, reading, and communication skills in a safe, supervised environment.
-                </p>
+               <h3 class="info-title">What is Laius Entertainment?</h3>
+               <p>
+                  Laius Entertainment creates educational ROBLOX experiences designed to teach valuable life skills through engaging gameplay. Our flagship experience, Ronald's Restaurant, simulates working at a fast-paced restaurant environment where children learn customer service, teamwork, reading, and communication skills in a safe, supervised environment.
+               </p>
             </div>
             <div class="info-card fade-in">
-                <h3 class="info-title">Safety & Age Appropriateness</h3>
-                <p>
-                    All our experiences are rated for all ages by ROBLOX. We maintain a dedicated Trust & Safety team working around the clock to ensure secure environments. Our experiences promote positive values like helping others, working together, and being responsible. We actively moderate content and maintain family-friendly environments with zero tolerance for inappropriate content or unsafe interactions.
-                </p>
+               <h3 class="info-title">Safety & Age Appropriateness</h3>
+               <p>
+                  All our experiences are rated for all ages by ROBLOX. We maintain a dedicated Trust & Safety team working around the clock to ensure secure environments. Our experiences promote positive values like helping others, working together, and being responsible. We actively moderate content and maintain family-friendly environments with zero tolerance for inappropriate content or unsafe interactions.
+               </p>
             </div>
             <div class="info-card fade-in">
-                <h3 class="info-title">Getting Started</h3>
-                <p>If your child doesn't have a ROBLOX account yet, here's how to get started:</p>
-                <ol>
-                    <li>Visit <a href="https://www.roblox.com" target="_blank" rel="noopener noreferrer"><strong>roblox.com</strong></a> and create a free account</li>
-                    <li>Set up parental controls and privacy settings <em>(optional but highly recommended for children & teens)</em></li>
-                    <li>Download the ROBLOX app on your device</li>
-                    <li>Search for our experiences like <a href="https://www.roblox.com/join/nmcsv" target="_blank" rel="noopener noreferrer"><strong>Ronald's Restaurant</strong></a> and click Play</li>
-                    <li>Your child can start learning and having fun immediately!</li>
-                </ol>
+               <h3 class="info-title">Getting Started</h3>
+               <p>If your child doesn't have a ROBLOX account yet, here's how to get started:</p>
+               <ol>
+                  <li>Visit <a href="https://www.roblox.com" target="_blank" rel="noopener noreferrer"><strong>roblox.com</strong></a> and create a free account</li>
+                  <li>Set up parental controls and privacy settings <em>(optional but highly recommended for children & teens)</em></li>
+                  <li>Download the ROBLOX app on your device</li>
+                  <li>Search for our experiences like <a href="https://www.roblox.com/join/nmcsv" target="_blank" rel="noopener noreferrer"><strong>Ronald's Restaurant</strong></a> and click Play</li>
+                  <li>Your child can start learning and having fun immediately!</li>
+               </ol>
             </div>
             <div class="info-card fade-in">
-                <h3 class="info-title">Educational Benefits</h3>
-                <p>Playing our experiences helps children develop:</p>
-                <ul>
-                    <li>Customer service and communication skills</li>
-                    <li>Reading comprehension and basic math through interactive tasks</li>
-                    <li>Teamwork and collaboration abilities</li>
-                    <li>Responsibility and strong work ethic</li>
-                    <li>Problem-solving and critical thinking skills</li>
-                    <li>Social skills through positive peer interactions</li>
-                    <li>Understanding of workplace dynamics and professional behavior</li>
-                </ul>
+               <h3 class="info-title">Educational Benefits</h3>
+               <p>Playing our experiences helps children develop:</p>
+               <ul>
+                  <li>Customer service and communication skills</li>
+                  <li>Reading comprehension and basic math through interactive tasks</li>
+                  <li>Teamwork and collaboration abilities</li>
+                  <li>Responsibility and strong work ethic</li>
+                  <li>Problem-solving and critical thinking skills</li>
+                  <li>Social skills through positive peer interactions</li>
+                  <li>Understanding of workplace dynamics and professional behavior</li>
+               </ul>
             </div>
-        </div>
-    </section>
-
-    <section class="news-section" id="news">
-        <div class="news-container">
-            <h2 class="section-title fade-in">Latest News & Updates</h2>
-            <div class="news-slider-wrapper">
-                <div class="news-slider" id="newsSlider">
-                    <article class="news-card">
-                        <div class="news-image">
-                           <img src="files/images/wayfresh-sneakpeek.png">
-                        </div>
-                        <div class="news-content">
-                            <div class="news-meta">
-                                <span>Igor Kalen</span>
-                                <span>July 23, 2025</span>
-                            </div>
-                            <h3 class="news-title">Wayfresh: The New Shopping Simulation from Laius Entertainment Launching Next Month!</h3>
-                            <p class="news-excerpt">
-                               Get ready to dive into the world of retail with Wayfresh, Laius Entertainment’s newest all-ages shopping simulation game! Whether you want to be a cashier, manage the store, keep security tight, or explore other cool roles, Wayfresh gives you a realistic and fun...
-                            </p>
-                            <a href="/files/news/article_07-23-2025.html" class="read-more">
-                                Read More 
-                                <span>
-<svg xmlns="http://www.w3.org/2000/svg" height="12px" viewBox="0 -960 960 960" width="12px" fill="#27742d"><path d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z"/></svg>
-                                </span>
-                            </a>
-                        </div>
-                    </article>
-                <button class="news-arrow prev" id="prevBtn" aria-label="Previous news">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="currentColor">
-                        <path d="M560-240 320-480l240-240 56 56-184 184 184 184-56 56Z"/>
-                    </svg>
-                </button>
-                <button class="news-arrow next" id="nextBtn" aria-label="Next news">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="currentColor">
-                        <path d="M504-480 320-664l56-56 240 240-240 240-56-56 184-184Z"/>
-                    </svg>
-                </button>
+         </div>
+      </section>
+      <section class="news-section" id="news">
+         <div class="news-container">
+         <h2 class="section-title fade-in">Latest News & Updates</h2>
+         <div class="news-slider-wrapper">
+            <div class="news-slider" id="newsSlider">
+               <article class="news-card">
+                  <div class="news-image">
+                     <img src="files/images/wayfresh-sneakpeek.png">
+                  </div>
+                  <div class="news-content">
+                     <div class="news-meta">
+                        <span>Igor Kalen</span>
+                        <span>July 23, 2025</span>
+                     </div>
+                     <h3 class="news-title">Wayfresh: The New Shopping Simulation from Laius Entertainment Launching Next Month!</h3>
+                     <p class="news-excerpt">
+                        Get ready to dive into the world of retail with Wayfresh, Laius Entertainment's newest all-ages shopping simulation game! Whether you want to be a cashier, manage the store, keep security tight, or explore other cool roles, Wayfresh gives you a realistic and fun...
+                     </p>
+                     <a href="/files/news/article_07-23-2025.html" class="read-more">
+                        Read More 
+                        <span>
+                           <svg xmlns="http://www.w3.org/2000/svg" height="12px" viewBox="0 -960 960 960" width="12px" fill="#27742d">
+                              <path d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z"/>
+                           </svg>
+                        </span>
+                     </a>
+                  </div>
+               </article>
+               <button class="news-arrow prev" id="prevBtn" aria-label="Previous news">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="currentColor">
+                     <path d="M560-240 320-480l240-240 56 56-184 184 184 184-56 56Z"/>
+                  </svg>
+               </button>
+               <button class="news-arrow next" id="nextBtn" aria-label="Next news">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="currentColor">
+                     <path d="M504-480 320-664l56-56 240 240-240 240-56-56 184-184Z"/>
+                  </svg>
+               </button>
             </div>
-            
             <div class="news-indicators" id="newsIndicators">
-                <div class="indicator active"></div>
+               <div class="indicator active"></div>
             </div>
-        </div>
-    </section>
-
-    <section class="contact-section" id="contact">
-        <div class="section-container">
+         </div>
+      </section>
+      <section class="contact-section" id="contact">
+         <div class="section-container">
             <h2 class="contact-title fade-in">Get in Touch</h2>
             <p class="contact-description fade-in">
-                Have questions about our experiences or want to learn more about Laius Entertainment? We'd love to hear from you!
+               Have questions about our experiences or want to learn more about Laius Entertainment? We'd love to hear from you!
             </p>
             <div class="contact-links fade-in">
-                <a href="/contact" class="contact-link">Contact Form</a>
-                <a href="mailto:hello@laiusgames.com" class="contact-link">Email (hello@laiusgames.com)</a>
+               <a href="/contact" class="contact-link">Contact Form</a>
+               <a href="mailto:hello@laiusgames.com" class="contact-link">Email (hello@laiusgames.com)</a>
             </div>
-        </div>
-    </section>
-
-   <!-- currently not used
-     <section class="contact-section" style="background: var(--background);" id="careers">
-        <div class="section-container">
-            <h2 class="contact-title fade-in">Join Our Team!</h2>
-            <div class="info-card fade-in" style="max-width: 600px; margin: 0 auto; text-align: center;">
-                <h3 class="info-title">We're Hiring!</h3>
-                <p style="font-size: 16px; margin-bottom: 20px;">
-                    Want to help create amazing gaming experiences that teach real-world skills?<br>
-                    Laius Entertainment is always looking for passionate people to join our crew!
-                </p>
-                <p style="font-size: 16px; margin-bottom: 30px;">
-                    Whether you're into game development, community management, or have other skills you think we'd love,<br>
-                    we want to hear from you. We're all about that chill, inclusive vibe and good energy.
-                </p>
-                <div class="cta-buttons">
-                    <a href="mailto:careers@laiusgames.com" class="btn btn-primary" style="fill: #ffffff;">Apply Now</a>
-                </div>
-                <p style="font-size: 14px; margin-top: 15px; color: var(--text-secondary);">
-                    <strong>careers@laiusgames.com</strong>
-                </p>
-            </div>
-        </div>
-    </section>
-    -->
-
-    <footer class="footer">
-        <div class="footer-content">
+         </div>
+      </section>
+      <footer class="footer">
+         <div class="footer-content">
             <div class="footer-links">
-                <a href="#home" class="footer-link">Home</a>
-                <a href="#parents" class="footer-link">For Parents</a>
-                <a href="#news" class="footer-link">News</a>
-                <a href="https://status.ronaldsgroup.com/" class="footer-link">Service Status</a>
-                <a href="/documents" class="footer-link">Documents</a>
+               <a href="#home" class="footer-link">Home</a>
+               <a href="#parents" class="footer-link">For Parents</a>
+               <a href="#news" class="footer-link">News</a>
+               <a href="https://status.ronaldsgroup.com/" class="footer-link">Service Status</a>
+               <a href="/documents" class="footer-link">Documents</a>
             </div>
             <p class="footer-text">© 2025 Laius Entertainment. All rights reserved.</p>
             <p class="footer-text">Creating educational, safe, and fun experiences with ❤️ at Laius Entertainment.  </p>
             <div style="font-size: 12px; margin: 1rem auto 0; color: var(--text-muted); text-align: left; max-width: 1000px; line-height: 1.4;">
-                <p style="margin-bottom: 0.5rem;">
-                    <sup>1</sup>
-                    Ronald's Group & Ronald's Restaurant are
-                    <strong>not</strong>
-                    affiliated, sponsored, endorsed, or connected in any way with McDonald's Corporation or its affiliates.
-                </p>
-                <p style="margin-bottom: 0.5rem;">
-                    <sup>2</sup>
-                    While we maintain a dedicated moderation team, full supervision depends on both in-game staff and ROBLOX's moderation tools. Parents should monitor young players as needed.
-                </p>
-                <p style="margin-bottom: 0.5rem;">
-                    <sup>3</sup>
-                    The experience is rated "All Ages" by ROBLOX based on a content questionnaire submitted by Laius Entertainment. Final approval and classification are determined by ROBLOX Corporation.
-                </p>
-                <p>
-                    <sup>4</sup>
-                    ROBLOX is a separate platform with its own Terms of Service and Privacy Policy. Laius Entertainment and Ronald's Group are not responsible for content outside our experiences.
-                </p>
+               <p style="margin-bottom: 0.5rem;">
+                  <sup>1</sup>
+                  Ronald's Group & Ronald's Restaurant are
+                  <strong>not</strong>
+                  affiliated, sponsored, endorsed, or connected in any way with McDonald's Corporation or its affiliates.
+               </p>
+               <p style="font-weight: 700;">Disclaimers:</p>
+               <p style="margin-bottom: 0.5rem;">While we maintain a dedicated moderation team, full supervision depends on both in-game staff and ROBLOX's moderation tools. Parents should monitor young players as needed.</p>
+               <p style="margin-bottom: 0.5rem;">The experience is rated "All Ages" by ROBLOX based on a content questionnaire submitted by Laius Entertainment. Final approval and classification are determined by ROBLOX Corporation.</p>
+               <p style="margin-bottom: 0.5rem;">ROBLOX is a separate platform with its own Terms of Service and Privacy Policy. Laius Entertainment and Ronald's Group are not responsible for content outside our experiences.</p>
             </div>
-        </div>
-        <div class="ml-embedded" data-form="LTrDOY" id="newsletter"></div>
-    </footer>
-    <!--scripts-->
-    <script src="scripts/channeltalk.js" async></script>
-    <script src="scripts/announcement-banner.js" async></script>
-    <script src="scripts/fade-in-animations.js" async></script>
-    <script src="scripts/news-slider.js" async></script>
-    <script src="scripts/smooth-scrolling.js" async></script>
-    <!--feedback collection-->
-    <script async src="https://tally.so/widgets/embed.js"></script>
-<script>
-window.TallyConfig = {
-  "formId": "w8497Y",
-  "popup": {
-    "emoji": {
-      "text": "👋",
-      "animation": "wave"
-    },
-    "open": {
-      "trigger": "time",
-      "ms": 15000
-    },
-    "layout": "modal",
-    "doNotShowAfterSubmit": true,
-    "formEventsForwarding": true
-  }
-};
-</script>
-</body>
+         </div>
+         <div class="ml-embedded" data-form="LTrDOY" id="newsletter"></div>
+      </footer>
+      <!--start scripts-->
+      <script src="/scripts/channeltalk.js" async></script>
+      <script src="/scripts/announcement-banner.js" async></script>
+      <script src="/scripts/fade-in-animations.js" async></script>
+      <script src="/scripts/news-slider.js" async></script>
+      <script src="/scripts/smooth-scrolling.js" async></script>
+      <script src="/scripts/newsletter.js" async></script>
+      <script src="/scripts/mobile-menu.js" async></script>
+      <!--end scripts-->
+      <!--start feedback collection-->
+      <script async src="https://tally.so/widgets/embed.js"></script>
+      <script>
+         window.TallyConfig = {
+             "formId": "w8497Y",
+             "popup": {
+                 "emoji": {
+                     "text": "👋",
+                     "animation": "wave"
+                 },
+                 "open": {
+                     "trigger": "time",
+                     "ms": 15000
+                 },
+                 "layout": "modal",
+                 "doNotShowAfterSubmit": true,
+                 "formEventsForwarding": true
+             }
+         };
+      </script>
+      <!--end feedback collection-->
+   </body>
 </html>

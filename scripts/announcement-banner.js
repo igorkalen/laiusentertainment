@@ -3,8 +3,8 @@
     Contact: igor@igorkalen.dev  
     Creation Date: July 31, 2025  
     Last Updated: August 1, 2025
-    Version: 0.9.0
-    Status: STABLE; MAJOR UPDATE PLANNED
+    Version: 1.0.0
+    Status: IN PRODUCTION
     File: announcement-banner.js
 
     ----
@@ -18,14 +18,15 @@
     officially managed by Laius Entertainment.
  */
  
- function closeBanner() {
+        function closeBanner() {
             const banner = document.getElementById('announcementBanner');
             const navbar = document.getElementById('navbar');
+            const mobileNavMenu = document.getElementById('mobileNavMenu');
             const hero = document.querySelector('.hero');
-            adjustNavbarOffset();
-            banner.classList.add("hidden");
+            
             banner.classList.add('hidden');
             navbar.classList.add('banner-hidden');
+            mobileNavMenu.classList.add('banner-hidden');
             hero.classList.add('banner-hidden');
         }
 
