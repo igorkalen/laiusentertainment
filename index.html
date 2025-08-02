@@ -2,11 +2,11 @@
 <!--
    Developed by: Igor Kalen  
    Contact: igor@igorkalen.dev  
-   Creation Date: July 31, 2025  
-   Last Updated: August 1, 2025
-   Version: 1.1.0
+   Creation Date: August 2, 2025  
+   Last Updated: August 2, 2025
+   Version: 1.0.0
    Status: IN PRODUCTION
-   File: index.html
+   File: radio.html
    
    ----
    © 2025 Laius Entertainment. All rights reserved.
@@ -19,350 +19,65 @@
    officially managed by Laius Entertainment.
    -->
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - Laius Entertainment</title>
-    <link rel="icon" type="image/png" href="/files/website-images/favicon.png">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/css/index.css">
-  </head>
-  <body>
-    <div class="announcement-banner" id="announcementBanner">
-      <div class="announcement-content">
-        <!--<div class="announcement-icon"><svg
-									xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="currentColor"><path d="M480-280q17 0 28.5-11.5T520-320q0-17-11.5-28.5T480-360q-17 0-28.5 11.5T440-320q0 17 11.5 28.5T480-280Zm-40-160h80v-240h-80v240Zm40 360q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Z"/></svg></div>-->
-        <div class="announcement-text"> ✨ We’ve refreshed our look! Explore the new Laius Entertainment site and <a data-tally-open="w8497Y" data-tally-layout="modal" data-tally-width="800" data-tally-emoji-text="👋" data-tally-emoji-animation="wave">share your feedback</a>. 
-			<br>
-			📻 Big news! We just launched our own radio station — tune in now and vibe with us! <a href="https://radio.laiusgames.com" target="_blank">Listen here</a> 🎶
-		</div>
-        <!-- <button class="close-button" onclick="closeBanner()" aria-label="Close announcement"><svg
-									xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="currentColor"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></button>-->
-      </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Laius Radio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/index.css">
+  <style>
+    html, body {
+      margin: 0; 
+      padding: 0; 
+      height: 100%; 
+      overflow: hidden;
+    }
+    iframe {
+      border: none;
+      width: 100vw;
+      height: 100vh;
+      display: block;
+    }
+        .second-announcement {
+  background: var(--primary);
+  color: white;
+  padding: 12px 20px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.second-announcement.hidden {
+  transform: translateY(100%);
+}
+  </style>
+</head>
+<body>
+     <div class="announcement-banner" id="announcementBanner">
+     <div class="announcement-text">
+  🔇 Can't hear the audio? Try listening <a href="https://a12.asurahosting.com/public/laius_radio">here</a> or use the direct <a href="https://a12.asurahosting.com/listen/laius_radio/radio.mp3">MP3 link</a>.
+</div>
+</div>
     </div>
-    <nav class="navbar" id="navbar">
-      <div class="nav-container">
-        <a href="/" class="logo">
-          <img src="/files/website-images/entertainment.png" alt="Laius Entertainment logo" />
-        </a>
-        <ul class="nav-menu">
-          <li>
-            <a href="#home" class="nav-link">Home</a>
-          </li>
-          <li>
-            <a href="#experiences" class="nav-link">Experiences</a>
-          </li>
-          <li>
-            <a href="#parents" class="nav-link">For Parents</a>
-          </li>
-          <li>
-            <a href="#news" class="nav-link">News</a>
-          </li>
-          <li>
-            <a href="#contact" class="nav-link">Contact</a>
-          </li>
-		   <li>
-            <a href="https://radio.laiusgames.com" class="nav-link">Radio</a>
-          </li>
-        </ul>
-        <!--<button class="mobile-menu-btn" id="mobileMenuBtn"></button>-->
-      </div>
-    </nav>
-    <!-- <div class="mobile-nav-menu" id="mobileNavMenu"><ul><li><a href="#home" class="nav-link">Home</a></li><li><a href="#experiences" class="nav-link">Experiences</a></li><li><a href="#parents" class="nav-link">For Parents</a></li><li><a href="#news" class="nav-link">News</a></li><li><a href="#contact" class="nav-link">Contact</a></li></ul></div> -->
-    <section class="hero" id="home">
-      <div class="hero-container">
-        <div class="hero-badge">
-          <span>🎮</span>
-          <span>Creators of educational, safe, and fun ROBLOX experiences.</span>
-        </div>
-        <h1 class="hero-title">Laius Entertainment</h1>
-        <p class="hero-description"> We create fun and educational gaming experiences on ROBLOX that teach valuable life skills. From customer service to teamwork, our games help players of all ages learn while having fun in safe, moderated environments. </p>
-        <div class="cta-buttons">
-          <a href="#experiences" class="btn btn-primary"> Explore Our Experiences </a>
-          <a href="#parents" class="btn btn-secondary"> Info for Parents </a>
-        </div>
-      </div>
-    </section>
-    <section class="experiences-section" id="experiences">
-      <div class="section-container">
-        <h2 class="section-title fade-in">Our Experiences</h2>
-        <div class="experiences-grid">
-          <div class="experience-card fade-in">
-            <div class="experience-header">
-              <div class="experience-icon">
-                <img src="files/images/ronalds_restaurant.png" alt="Ronald's Restaurant logo">
-              </div>
-              <h3 class="experience-title">Ronald's Restaurant</h3>
-            </div>
-            <p class="experience-description"> Join a fast-food simulation inspired by the world's biggest fast food chain!<sup>1</sup> Play as a cook, cashier, janitor, customer, or manager. Learn customer service, teamwork, and communication skills in our friendly environment. </p>
-            <div class="experience-stats">
-              <span class="stat">All Ages</span>
-              <span class="stat">Teamwork</span>
-              <span class="stat">Customer Service</span>
-            </div>
-            <div class="experience-links">
-              <a href="https://www.roblox.com/join/nmcsv" class="experience-link">
-                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 50 50">
-                  <path d="M 12.125 1.9980469 A 1.0001 1.0001 0 0 0 11.199219 2.7441406 L 2.0332031 37.576172 A 1.0001 1.0001 0 0 0 2.7460938 38.798828 L 37.580078 47.966797 A 1.0001 1.0001 0 0 0 38.802734 47.253906 L 47.96875 12.419922 A 1.0001 1.0001 0 0 0 47.255859 11.197266 L 12.421875 2.03125 A 1.0001 1.0001 0 0 0 12.125 1.9980469 z M 21.5 19 L 31 21.5 L 28.5 31 L 19 28.5 L 21.5 19 z"></path>
-                </svg> Play on ROBLOX </a>
-              <a href="https://discord.gg/mcroblox" class="experience-link">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                  <!--!Font Awesome Free v7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
-                  <path d="M492.5 69.8c-.2-.3-.4-.6-.8-.7-38.1-17.5-78.4-30-119.7-37.1-.4-.1-.8 0-1.1 .1s-.6 .4-.8 .8c-5.5 9.9-10.5 20.2-14.9 30.6-44.6-6.8-89.9-6.8-134.4 0-4.5-10.5-9.5-20.7-15.1-30.6-.2-.3-.5-.6-.8-.8s-.7-.2-1.1-.2c-41.3 7.1-81.6 19.6-119.7 37.1-.3 .1-.6 .4-.8 .7-76.2 113.8-97.1 224.9-86.9 334.5 0 .3 .1 .5 .2 .8s.3 .4 .5 .6c44.4 32.9 94 58 146.8 74.2 .4 .1 .8 .1 1.1 0s.7-.4 .9-.7c11.3-15.4 21.4-31.8 30-48.8 .1-.2 .2-.5 .2-.8s0-.5-.1-.8-.2-.5-.4-.6s-.4-.3-.7-.4c-15.8-6.1-31.2-13.4-45.9-21.9-.3-.2-.5-.4-.7-.6s-.3-.6-.3-.9 0-.6 .2-.9 .3-.5 .6-.7c3.1-2.3 6.2-4.7 9.1-7.1 .3-.2 .6-.4 .9-.4s.7 0 1 .1c96.2 43.9 200.4 43.9 295.5 0 .3-.1 .7-.2 1-.2s.7 .2 .9 .4c2.9 2.4 6 4.9 9.1 7.2 .2 .2 .4 .4 .6 .7s.2 .6 .2 .9-.1 .6-.3 .9-.4 .5-.6 .6c-14.7 8.6-30 15.9-45.9 21.8-.2 .1-.5 .2-.7 .4s-.3 .4-.4 .7-.1 .5-.1 .8 .1 .5 .2 .8c8.8 17 18.8 33.3 30 48.8 .2 .3 .6 .6 .9 .7s.8 .1 1.1 0c52.9-16.2 102.6-41.3 147.1-74.2 .2-.2 .4-.4 .5-.6s.2-.5 .2-.8c12.3-126.8-20.5-236.9-86.9-334.5zm-302 267.7c-29 0-52.8-26.6-52.8-59.2s23.4-59.2 52.8-59.2c29.7 0 53.3 26.8 52.8 59.2 0 32.7-23.4 59.2-52.8 59.2zm195.4 0c-29 0-52.8-26.6-52.8-59.2s23.4-59.2 52.8-59.2c29.7 0 53.3 26.8 52.8 59.2 0 32.7-23.2 59.2-52.8 59.2z" />
-                </svg> Join Discord </a>
-              <a href="https://guilded.gg/mcroblox" class="experience-link">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                  <!--!Font Awesome Free v7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
-                  <path d="M443.9 64L5 64c0 103.3 22.2 180.1 43.4 222.4 64.1 127.8 176 161.6 177.3 161.6 55.7-20.5 104.5-56.3 140.6-103.5 25.9-33.9 53.1-87.2 65.9-145.8l-259.9 0c4.1 36.4 22.2 67.9 45.1 86.9l88.6 0c-17 28.2-48.2 54.4-80.5 69.5-31.2-13.3-69.1-46.5-96.5-98.4-26.7-53.8-27.1-105.9-27.1-105.9l336.1 0c4-28.8 5.9-57.9 5.9-86.9z" />
-                </svg> Join Guilded </a>
-            </div>
-          </div>
-          <div class="experience-card fade-in">
-            <div class="experience-header">
-               <div class="experience-icon">
-                  <img src="files/images/wayfresh_shopping.png" alt="Wayfresh Shopping logo">
-               </div>
-              <h3 class="experience-title">Wayfresh Shopping</h3>
-            </div>
-            <p class="experience-description"> Dive into retail simulation where you can be a cashier, security guard, or store manager. Learn retail skills while having fun in this all-ages shopping experience that teaches customer service and responsibility. </p>
-            <div class="experience-stats">
-              <span class="stat">Coming Soon</span>
-              <span class="stat">All Ages</span>
-              <span class="stat">Retail Skills</span>
-              <span class="stat">Customer Service</span>
-            </div>
-            <div class="experience-links">
-              <a href="#news" class="experience-link">
-                <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#000000">
-                  <path d="M189-95q-39.05 0-66.53-27.47Q95-149.95 95-189v-582q0-39.46 27.47-67.23Q149.95-866 189-866h414q19.2 0 36.6 8 17.4 8 31.4 21l166 166q13 14 21 31.4t8 36.6v414q0 39.05-27.77 66.53Q810.46-95 771-95H189Zm0-94h582v-399H635q-19.75 0-33.37-13.63Q588-615.25 588-635v-136H189v582Zm468.39-108q13.36 0 22.49-9.89 9.12-9.89 9.12-23.48t-9.2-22.61Q670.6-362 657-362H302.66q-13.41 0-22.53 9.19-9.13 9.2-9.13 22.79 0 13.6 9.84 23.31 9.83 9.71 22.98 9.71h353.57ZM470-592q13.33 0 23.16-9.89 9.84-9.89 9.84-23.29 0-13.4-9.84-23.11Q483.33-658 470-658H304q-13.33 0-23.16 9.89-9.84 9.89-9.84 23.29 0 13.4 9.84 23.11Q290.67-592 304-592h166Zm186.43 148q13.32 0 22.95-9.89 9.62-9.89 9.62-23.29 0-13.4-9.84-23.11-9.83-9.71-22.93-9.71H303.57q-13.32 0-22.94 9.89-9.63 9.89-9.63 23.29 0 13.4 9.84 23.11 9.83 9.71 22.93 9.71h352.66ZM189-771v183.43V-771v582-582Z" />
-                </svg> Learn More </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="benefits-section" id="benefits">
-      <div class="section-container">
-        <h2 class="section-title fade-in">Benefits of Playing Our Experiences</h2>
-        <div class="benefits-grid">
-          <div class="benefit-card fade-in">
-            <div class="benefit-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF">
-                <path d="M480-80q-82 0-155-31.5t-127.5-86Q143-252 111.5-325T80-480q0-83 31.5-155.5t86-127Q252-817 325-848.5T480-880q83 0 155.5 31.5t127 86q54.5 54.5 86 127T880-480q0 82-31.5 155t-86 127.5q-54.5 54.5-127 86T480-80Zm0-82q26-36 45-75t31-83H404q12 44 31 83t45 75Zm-104-16q-18-33-31.5-68.5T322-320H204q29 50 72.5 87t99.5 55Zm208 0q56-18 99.5-55t72.5-87H638q-9 38-22.5 73.5T584-178ZM170-400h136q-3-20-4.5-39.5T300-480q0-21 1.5-40.5T306-560H170q-5 20-7.5 39.5T160-480q0 21 2.5 40.5T170-400Zm216 0h188q3-20 4.5-39.5T580-480q0-21-1.5-40.5T574-560H386q-3 20-4.5 39.5T380-480q0 21 1.5 40.5T386-400Zm268 0h136q5-20 7.5-39.5T800-480q0-21-2.5-40.5T790-560H654q3 20 4.5 39.5T660-480q0 21-1.5 40.5T654-400Zm-16-240h118q-29-50-72.5-87T584-782q18 33 31.5 68.5T638-640Zm-234 0h152q-12-44-31-83t-45-75q-26 36-45 75t-31 83Zm-200 0h118q9-38 22.5-73.5T376-782q-56 18-99.5 55T204-640Z" />
-              </svg>
-            </div>
-            <h3 class="benefit-title">Global Community</h3>
-            <p class="benefit-description"> Connect with players from around the world in our safe, moderated environments. Make new friends and learn about different cultures while having fun together. </p>
-          </div>
-          <div class="benefit-card fade-in">
-            <div class="benefit-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF">
-                <path d="m826-585-56-56 30-31-128-128-31 30-57-57 30-31q23-23 57-22.5t57 23.5l129 129q23 23 23 56.5T857-615l-31 30ZM346-104q-23 23-56.5 23T233-104L104-233q-23-23-23-56.5t23-56.5l30-30 57 57-31 30 129 129 30-31 57 57-30 30Zm397-336 57-57-303-303-57 57 303 303ZM463-160l57-58-302-302-58 57 303 303Zm-6-234 110-109-64-64-109 110 63 63Zm63 290q-23 23-57 23t-57-23L104-406q-23-23-23-57t23-57l57-57q23-23 56.5-23t56.5 23l63 63 110-110-63-62q-23-23-23-57t23-57l57-57q23-23 56.5-23t56.5 23l303 303q23 23 23 56.5T857-441l-57 57q-23 23-57 23t-57-23l-62-63-110 110 63 63q23 23 23 56.5T577-161l-57 57Z" />
-              </svg>
-            </div>
-            <h3 class="benefit-title">Real-World Skills</h3>
-            <p class="benefit-description"> Learn valuable life skills like customer service, teamwork, communication, and problem-solving through engaging gameplay that feels more like fun than learning. </p>
-          </div>
-          <div class="benefit-card fade-in">
-            <div class="benefit-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF">
-                <path d="M480-84q-7 0-13-1t-12-3q-135-45-215-166.5T160-516v-189q0-25 14.5-45t37.5-29l240-90q14-5 28-5t28 5l240 90q23 9 37.5 29t14.5 45v189q0 140-80 261.5T505-88q-6 2-12 3t-13 1Zm0-80q104-33 172-132t68-220v-189l-240-90-240 90v189q0 121 68 220t172 132Zm0-316Z" />
-              </svg>
-            </div>
-            <h3 class="benefit-title">Safe & Educational</h3>
-            <p class="benefit-description"> All our experiences are designed with safety in mind, featuring active moderation and age-appropriate content that parents can trust and kids can enjoy. </p>
-          </div>
-          <div class="benefit-card fade-in">
-            <div class="benefit-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF">
-                <path d="M242-249q-20-11-31-29.5T200-320v-192l-96-53q-11-6-16-15t-5-20q0-11 5-20t16-15l338-184q9-5 18.5-7.5T480-829q10 0 19.5 2.5T518-819l381 208q10 5 15.5 14.5T920-576v256q0 17-11.5 28.5T880-280q-17 0-28.5-11.5T840-320v-236l-80 44v192q0 23-11 41.5T718-249L518-141q-9 5-18.5 7.5T480-131q-10 0-19.5-2.5T442-141L242-249Zm238-203 274-148-274-148-274 148 274 148Zm0 241 200-108v-151l-161 89q-9 5-19 7.5t-20 2.5q-10 0-20-2.5t-19-7.5l-161-89v151l200 108Zm0-241Zm0 121Zm0 0Z" />
-              </svg>
-            </div>
-            <h3 class="benefit-title">Academic Benefits</h3>
-            <p class="benefit-description"> Improve reading comprehension, basic math skills, and critical thinking through interactive gameplay that reinforces learning in an engaging way. </p>
-          </div>
-          <div class="benefit-card fade-in">
-            <div class="benefit-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF">
-                <path d="M160-120q-33 0-56.5-23.5T80-200v-440q0-33 23.5-56.5T160-720h160v-80q0-33 23.5-56.5T400-880h160q33 0 56.5 23.5T640-800v80h160q33 0 56.5 23.5T880-640v440q0 33-23.5 56.5T800-120H160Zm0-80h640v-440H160v440Zm240-520h160v-80H400v80ZM160-200v-440 440Z" />
-              </svg>
-            </div>
-            <h3 class="benefit-title">Career Preparation</h3>
-            <p class="benefit-description"> Get a head start on understanding workplace dynamics, responsibility, and professional skills through realistic job simulations in various industries. </p>
-          </div>
-          <div class="benefit-card fade-in">
-            <div class="benefit-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF">
-                <path d="M200-320v-200q0-17 11.5-28.5T240-560q17 0 28.5 11.5T280-520v200q0 17-11.5 28.5T240-280q-17 0-28.5-11.5T200-320Zm240 0v-200q0-17 11.5-28.5T480-560q17 0 28.5 11.5T520-520v200q0 17-11.5 28.5T480-280q-17 0-28.5-11.5T440-320ZM120-120q-17 0-28.5-11.5T80-160q0-17 11.5-28.5T120-200h720q17 0 28.5 11.5T880-160q0 17-11.5 28.5T840-120H120Zm560-200v-200q0-17 11.5-28.5T720-560q17 0 28.5 11.5T760-520v200q0 17-11.5 28.5T720-280q-17 0-28.5-11.5T680-320Zm160-320H116q-15 0-25.5-10.5T80-676v-22q0-11 5.5-19t14.5-13l344-172q17-8 36-8t36 8l342 171q11 5 16.5 15t5.5 21v15q0 17-11.5 28.5T840-640Zm-582-80h444-444Zm0 0h444L480-830 258-720Z" />
-              </svg>
-            </div>
-            <h3 class="benefit-title">Character Building</h3>
-            <p class="benefit-description"> Develop important character traits like responsibility, empathy, patience, and leadership through positive role-playing experiences and team challenges. </p>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="parents-section" id="parents">
-      <div class="section-container">
-        <h2 class="section-title fade-in">Information for Parents</h2>
-        <div class="info-card fade-in">
-          <h3 class="info-title">What is Laius Entertainment?</h3>
-          <p> Laius Entertainment creates educational ROBLOX experiences designed to teach valuable life skills through engaging gameplay. Our flagship experience, Ronald's Restaurant, simulates working at a fast-paced restaurant environment where children learn customer service, teamwork, reading, and communication skills in a safe, supervised environment. </p>
-        </div>
-        <div class="info-card fade-in">
-          <h3 class="info-title">Safety & Age Appropriateness</h3>
-          <p> All our experiences are rated for all ages by ROBLOX. We maintain a dedicated Trust & Safety team working around the clock to ensure secure environments. Our experiences promote positive values like helping others, working together, and being responsible. We actively moderate content and maintain family-friendly environments with zero tolerance for inappropriate content or unsafe interactions. </p>
-        </div>
-        <div class="info-card fade-in">
-          <h3 class="info-title">Getting Started</h3>
-          <p>If your child doesn't have a ROBLOX account yet, here's how to get started:</p>
-          <ol>
-            <li>Visit <a href="https://www.roblox.com" target="_blank" rel="noopener noreferrer">
-
-               <strong>roblox.com</strong></a> and create a free account </li>
-            <li>Set up parental controls and privacy settings <em>(optional but highly recommended for children & teens)</em>
-            </li>
-            <li>Download the ROBLOX app on your device</li>
-            <li>Search for our experiences like <a href="https://www.roblox.com/join/nmcsv" target="_blank" rel="noopener noreferrer">
-                <strong>Ronald's Restaurant</strong></a> and click Play </li>
-            <li>Your child can start learning and having fun immediately!</li>
-          </ol>
-        </div>
-        <div class="info-card fade-in">
-          <h3 class="info-title">Educational Benefits</h3>
-          <p>Playing our experiences helps children develop:</p>
-          <ul>
-            <li>Customer service and communication skills</li>
-            <li>Reading comprehension and basic math through interactive tasks</li>
-            <li>Teamwork and collaboration abilities</li>
-            <li>Responsibility and strong work ethic</li>
-            <li>Problem-solving and critical thinking skills</li>
-            <li>Social skills through positive peer interactions</li>
-            <li>Understanding of workplace dynamics and professional behavior</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-    <section class="news-section" id="news">
-      <div class="news-container">
-        <h2 class="section-title fade-in">Latest News & Updates</h2>
-        <div class="news-slider-wrapper">
-          <div class="news-slider" id="newsSlider">
-            <article class="news-card">
-              <div class="news-image">
-                <img src="files/images/wayfresh-sneakpeek.png">
-              </div>
-              <div class="news-content">
-                <div class="news-meta">
-                  <span>Igor Kalen</span>
-                  <span>July 23, 2025</span>
-                </div>
-                <h3 class="news-title">Wayfresh: The New Shopping Simulation from Laius Entertainment Launching Next Month!</h3>
-                <p class="news-excerpt"> Get ready to dive into the world of retail with Wayfresh, Laius Entertainment's newest all-ages shopping simulation game! Whether you want to be a cashier, manage the store, keep security tight, or explore other cool roles, Wayfresh gives you a realistic and fun... </p>
-                <a href="/files/news/article_07-23-2025.html" class="read-more"> Read More <span>
-                    <svg xmlns="http://www.w3.org/2000/svg" height="12px" viewBox="0 -960 960 960" width="12px" fill="#27742d">
-                      <path d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z" />
-                    </svg>
-                  </span>
-                </a>
-              </div>
-            </article>
-            <button class="news-arrow prev" id="prevBtn" aria-label="Previous news">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="currentColor">
-                <path d="M560-240 320-480l240-240 56 56-184 184 184 184-56 56Z" />
-              </svg>
-            </button>
-            <button class="news-arrow next" id="nextBtn" aria-label="Next news">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="currentColor">
-                <path d="M504-480 320-664l56-56 240 240-240 240-56-56 184-184Z" />
-              </svg>
-            </button>
-          </div>
-          <div class="news-indicators" id="newsIndicators">
-            <div class="indicator active"></div>
-          </div>
-        </div>
-    </section>
-    <section class="contact-section" id="contact">
-      <div class="section-container">
-        <h2 class="contact-title fade-in">Get in Touch</h2>
-        <p class="contact-description fade-in"> Have questions about our experiences or want to learn more about Laius Entertainment? We'd love to hear from you! </p>
-        <div class="contact-links fade-in">
-          <a href="/contact" class="contact-link">Contact Form</a>
-          <a href="mailto:hello@laiusgames.com" class="contact-link">Email (hello@laiusgames.com)</a>
-        </div>
-      </div>
-    </section>
-    <footer class="footer">
-      <div class="footer-content">
-        <div class="footer-links">
-          <a href="#home" class="footer-link">Home</a>
-          <a href="#parents" class="footer-link">For Parents</a>
-          <a href="#news" class="footer-link">News</a>
-		   <a href="https://radio.laiusgames.com/" class="footer-link">Radio</a>
-          <a href="https://status.laiusgames.com/" class="footer-link">Service Status</a>
-          <a href="/documents" class="footer-link">Documents</a>
-        </div>
-        <p class="footer-text">© 2025 Laius Entertainment. All rights reserved.</p>
-        <p class="footer-text">Creating educational, safe, and fun experiences with ❤️ at Laius Entertainment. </p>
-        <div style="font-size: 12px; margin: 1rem auto 0; color: var(--text-muted); text-align: left; max-width: 1000px; line-height: 1.4;">
-          <p style="margin-bottom: 0.5rem;">
-            <sup>1</sup> Ronald's Group & Ronald's Restaurant are <strong>not</strong> affiliated, sponsored, endorsed, or connected in any way with McDonald's Corporation or its affiliates.
-          </p>
-          <p style="font-weight: 700;">Disclaimers:</p>
-          <p style="margin-bottom: 0.5rem;">While we maintain a dedicated moderation team, full supervision depends on both in-game staff and ROBLOX's moderation tools. Parents should monitor young players as needed.</p>
-          <p style="margin-bottom: 0.5rem;">The experience is rated "All Ages" by ROBLOX based on a content questionnaire submitted by Laius Entertainment. Final approval and classification are determined by ROBLOX Corporation.</p>
-          <p style="margin-bottom: 0.5rem;">ROBLOX is a separate platform with its own Terms of Service and Privacy Policy. Laius Entertainment and Ronald's Group are not responsible for content outside our experiences.</p>
-        </div>
-      </div>
-      <div class="ml-embedded" data-form="LTrDOY" id="newsletter"></div>
-    </footer>
-
-    <!--start feedback collection-->
-    <!--feedback html-->
-    <div class="feedback-popup" id="feedbackPopup">
-      <div class="feedback-header">
-        <h3 class="feedback-title">New Website Feedback</h3>
-        <button class="feedback-close" onclick="closeFeedbackPopup()">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="currentColor" width="16" height="16">
-            <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
-          </svg>
-        </button>
-      </div>
-      <p class="feedback-text"> 👋 Hey there! We'd love to hear your feedback on the new Laius Entertainment website. This'll take less than a minute - we promise! </p>
-      <button class="feedback-btn" data-tally-open="w8497Y" data-tally-layout="modal" data-tally-width="800" data-tally-emoji-text="👋" data-tally-emoji-animation="wave" onclick="startSurvey()">Start Survey</button>
-    </div>
-    <!--feedback scripts-->
-    <script async src="https://tally.so/widgets/embed.js"></script>
-    <script>
-      function showFeedbackPopup() {
-        const popup = document.getElementById('feedbackPopup');
-        popup.classList.add('show');
-      }
-
-      function closeFeedbackPopup() {
-        const popup = document.getElementById('feedbackPopup');
-        popup.classList.add('hide');
-        setTimeout(() => {
-          popup.style.display = 'none';
-        }, 300);
-      }
-
-      function startSurvey() {
-        closeFeedbackPopup();
-      }
-      setTimeout(showFeedbackPopup, 10000);
-    </script>
-    <!--end feedback collection-->
-    
-    <!--start scripts-->
-    <script src="/scripts/channeltalk.js" async></script>
-    <script src="/scripts/announcement-banner.js" async></script>
-    <script src="/scripts/fade-in-animations.js" async></script>
-    <script src="/scripts/news-slider.js" async></script>
-    <script src="/scripts/smooth-scrolling.js" async></script>
-    <script src="/scripts/newsletter.js" async></script>
-    <script src="/scripts/mobile-menu.js" async></script>
-    <!--end scripts-->
-  </body>
+  <iframe 
+    src="https://a12.asurahosting.com/public/laius_radio" 
+    allow="autoplay" 
+    sandbox="allow-same-origin allow-scripts allow-popups allow-forms">
+  </iframe>
+     <div class="second-announcement" id="announcementBanner">
+     <div class="announcement-text">
+ 🎶 Want to suggest a song? <a data-tally-open="w840xY" data-tally-layout="modal" data-tally-emoji-text="🎶" data-tally-emoji-animation="tada">Click here</a> to send your request!
+</div>
+</div>
+</div>
+<script async src="https://tally.so/widgets/embed.js"></script>
+</body>
 </html>

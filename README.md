@@ -1,10 +1,10 @@
-# Laius Entertainment
+# Laius Radio
 
-Welcome! This is the main repository for [https://laiusgames.com](https://laiusgames.com).
+This is the repository for **Laius Radio** — our official 24/7 radio station at [radio.laiusgames.com](https://radio.laiusgames.com).
 
-## 🧠 About
+## 🎧 About
 
-This repo holds source code for the Laius Entertainment's official site and related services.
+Laius Radio is the official streaming station of Laius Entertainment, broadcasting a curated selection of music designed to inspire creativity, focus, and good vibes. We deliver soundtracks for gamers, creatives, and digital communities worldwide.
 
 ## 👨‍💻 Author
 
@@ -13,17 +13,11 @@ For contact or business inquiries: **igor@igorkalen.dev**
 
 ## 🛡 Copyright
 
-© 2025 Laius Entertainment. All rights reserved.
+© 2025 Laius Entertainment. All rights reserved.  
 
-This code is the exclusive property of Laius Entertainment.
-Unauthorized use, copying, distribution, or modification
-is strictly prohibited
+This code is the exclusive property of Laius Entertainment.  
+Unauthorized use, copying, distribution, or modification is strictly prohibited.
 
 ## 🔒 Licenses
 
 This project is **not open-source** and is intended for internal use only.
-
-This project uses icons from Font Awesome Free (v7.0.0) — specifically the Discord and Guilded icons.
-
-Font Awesome Free is licensed under SIL OFL 1.1 and MIT licenses.  
-Full license details: https://fontawesome.com/license/free
